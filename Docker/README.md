@@ -6,4 +6,4 @@
 ## Installation amd Configuration
 <hr />
 
-Based on the Docker Certified Associate Exam [buleprint](https://docker.cdn.prismic.io/docker/4a619747-6889-48cd-8420-60f24a6a13ac_DCA_study+Guide_v1.3.pdf)
+Based on the Docker Certified Associate Exam [buleprint](https://docker.cdn.prismic.io/docker/4a619747-6889-48cd-8420-60f24a6a13ac_DCA_study+Guide_v1.3.pdf). For more info, check the [website](https://success.docker.com/certification)
