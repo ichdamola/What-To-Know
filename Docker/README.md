@@ -35,4 +35,5 @@ Before you run containerized app with Docker in production, you want to know the
     - 16 GB of RAM for manager nodes or nodes running DTR
     - 4 vCPU for manager nodes or nodess running DTR
     - 25-100 GB of free disk space
+    
 >**Note:** Windows images require much space disk space than Linu images. 
