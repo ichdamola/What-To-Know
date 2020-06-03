@@ -21,4 +21,16 @@ Check out the compatibility matrix for **[list](https://success.docker.com/artic
       - Linux or Windows container
 
 #### Sizing Docker
-Before you run containerized app with Docker in producion, you want to know the size of the hardware that will be required.
+Before you run containerized app with Docker in producion, you want to know the size of the hardware that will be required. If ou only want to run the Docker Engine, you simply need to make sure you meet the minimum resource requirements of your host OS, in most cases, for development environment. However, to run Docker containers in production, the sizing of the hardware will vary greatly based on the workload (the containers that contains your application and data). 
+> Note: Universal Control Plane (UCP) and Docker Trusted Registry (DTR) have very dfferent sizing guidelines than the Docker Engine.
+
+- ##### UCP Sizing
+  - ###### Minimum requirements
+    - 8 GB of RAM for manager nodes or nodes running DTR
+    - 4 GB of RAM for worker nodes
+    - 3 GB of free disk space
+  
+  - ###### Recommendation for production requirements
+    - 16 GB of RAM for manager nodes or nodes running DTR
+    - 4 vCPU for manager nodes or nodess running DTR
+    - 25-100 GB of free disk space
