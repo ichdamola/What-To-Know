@@ -9,5 +9,13 @@ Based on the Docker Certified Associate Exam **[study guide](https://docker.cdn.
 - Community edition 
 - Enterprise edition 
 
-
+#### Docker platforms
+Check out the compatibility matrix for **[list](https://success.docker.com/article/compatibility-matrix)**.
+  - ##### Considerations for selecting Docker platforms
+    - Production or deelopment
+    - Type of aapplication
+    - Cloudd or on premises
+    - Scalability requirement
+    - Pay as you go fixed pricing
+    - Linux or Windows container
 
