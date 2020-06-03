@@ -39,7 +39,7 @@ Before you run containerized app with Docker in production, you want to know the
 >**Note:** Windows images require much space disk space than Linu images. 
 
 #### What is Docker Enginer?
-DE is the heart of Docker, and when you think of Docker, you are actually thinking of Docker. DE is designed as a server based client application, and it is made up of three different things which are:
+DE is the heart of Docker, and when you think of Docker, you are actually thinking of Docker Engine. DE is designed as a server based client application, and it is made up of three different things which are:
 
   - ##### Dockerd or Docker deamon
     - This is installed when DOcker is installed, it is the Docker server itself.
@@ -49,5 +49,28 @@ DE is the heart of Docker, and when you think of Docker, you are actually thinki
   
   - ##### Docker client (CLI)
     - This is the Docker commands run by clients to talk to the Docker server, pull down images, build images, and instantiate container. 
-  
-   
+    
+#### What is Docker namespace?
+Namespaces are used by Docker Engine to isolate what is happening in the running conatainers from those containers the operationg system (hostOS) is running on. With namespaces, the kernel resources such as:
+  - Process ID
+  - User IDs
+  - Network storage
+  - Inner process communication
+all these can be virtualised and shared between the host OS and the running containers.
+
+    - Types of namespace in use by Docker.
+      - Process
+      - Mount
+      - IPC
+      - Network
+      - User
+namespaces are similar to hypervisor in term of merit.
+
+#### Docker control groups
+Used for controlling container resouces, primarily around CPU and memory.
+  - ##### Used in Docker to control 
+    - CPU limits
+    - CPU reservations
+    - Memory limits
+    - Memory reservations
+> ***Note:*** Using cgroup in linux requires strict kernel requirements.
