@@ -20,3 +20,5 @@ Check out the compatibility matrix for **[list](https://success.docker.com/artic
       - Pay as you go fixed pricing
       - Linux or Windows container
 
+#### Sizing Docker
+Before you run containerized app with Docker in producion, you want to know the size of the hardware that will be required.
