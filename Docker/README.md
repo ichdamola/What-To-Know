@@ -77,5 +77,15 @@ Used for controlling container resouces, primarily around CPU and memory.
 
   ##### Cgroups commands with Docker
    ~~~docker 
-      docker -c, --cpu-shares int
+      docker -c, --cpu-shares int                 CPU shares (relative weight)
+             -c, --cpus decimal                     Number of CPU
+                 --cpuset-cpus string               CPUs in which to allow execution (0-3, 0,1)
+                 --cpuset-mems string                MEMs in which to allow execution (0-3, 0,1)
+   ~~~
+
+     ~~~docker 
+      docker -m, --memory bytes                    Memory limit
+             -c, --memory-reservation bytes         Memory soft limit
+                 --cmemory-swap bytes               Swap limit equal to memory plus swap: '-1' to enable unlimited swap
+                 --memory-swappiness int            Tune container memory swappiness (0 to 100) (default -1)
    ~~~
