@@ -56,14 +56,14 @@ Namespaces are used by Docker Engine to isolate what is happening in the running
   - User IDs
   - Network storage
   - Inner process communication
-all these can be virtualised and shared between the host OS and the running containers.
+all the above can be virtualised and shared between the host OS and the running containers.
 
-    - Types of namespace in use by Docker.
-      - Process
-      - Mount
-      - IPC
-      - Network
-      - User
+   - ##### Types of namespace in use by Docker.
+     - Process
+     - Mount
+     - IPC
+     - Network
+     - User
 namespaces are similar to hypervisor in term of merit.
 
 #### Docker control groups
