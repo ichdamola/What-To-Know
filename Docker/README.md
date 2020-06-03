@@ -15,7 +15,7 @@ Check out the compatibility matrix for **[list](https://success.docker.com/artic
   - ##### Considerations for selecting Docker platforms
       - Production or deelopment
       - Type of aapplication
-      - Cloudd or on premises
+      - Cloud or on premises
       - Scalability requirement
       - Pay as you go fixed pricing
       - Linux or Windows container
@@ -23,7 +23,7 @@ Check out the compatibility matrix for **[list](https://success.docker.com/artic
 #### Sizing Docker
 Before you run containerized app with Docker in production, you want to know the size of the hardware that will be required. If you only want to run the Docker Engine(development environment), you simply need to make sure you meet the minimum resource requirements of your host OS, in most cases. However, to run Docker containers in production, the sizing of the hardware will vary greatly based on the workload (the containers that contains your application and data). 
 
-> **Note:** Universal Control Plane (UCP) and Docker Trusted Registry (DTR) have very dfferent sizing guidelines than the Docker Engine.
+> **Note:** Universal Control Plane [(UCP)](https://docs.mirantis.com/docker-enterprise/v3.0/dockeree-products/ucp.html) and Docker Trusted Registry [(DTR)](https://docs.mirantis.com/docker-enterprise/v3.0/dockeree-products/dtr.html) have very dfferent sizing guidelines than the Docker Engine.
 
 - ##### UCP Sizing
   - ###### Minimum requirements
