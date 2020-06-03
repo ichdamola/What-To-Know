@@ -42,12 +42,12 @@ Before you run containerized app with Docker in production, you want to know the
 DE is the heart of Docker, and when you think of Docker, you are actually thinking of Docker. DE is designed as a server based client application, and it is made up of three different things which are:
 
   - ##### Dockerd or Docker deamon
-  This is installed when DOcker is installed, it is the Docker server itself.
+    - This is installed when DOcker is installed, it is the Docker server itself.
   
   - ##### RESTFUL API
-  This is also installed along with the deamon. It defines the interface used by all other programs to talk to the Docker deamon, and other pieces that made up the Docker ecosystem incudong both tools from Docker, as well as third-party applications.
+    - This is also installed along with the deamon. It defines the interface used by all other programs to talk to the Docker deamon, and other pieces that made up the Docker ecosystem incudong both tools from Docker, as well as third-party applications.
   
   - ##### Docker client (CLI)
-  This is the Docker commands run by clients to talk to the Docker server, pull down images, build images, and instantiate container. 
+    - This is the Docker commands run by clients to talk to the Docker server, pull down images, build images, and instantiate container. 
   
    
