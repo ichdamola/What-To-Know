@@ -74,3 +74,8 @@ Used for controlling container resouces, primarily around CPU and memory.
     - Memory limits
     - Memory reservations
 > ***Note:*** Using cgroup in linux requires strict kernel requirements.
+
+  ##### Cgroups commands with Docker
+   ~~~docker 
+      docker -c, --cpu-shares int
+   ~~~
