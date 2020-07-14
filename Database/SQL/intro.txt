@@ -1,0 +1,1 @@
+SQL is the standard language for acessing and manipulation  columns & rows databases.
