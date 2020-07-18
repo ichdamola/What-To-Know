@@ -4,6 +4,8 @@ SELECT * FROM table_name;
 SELECT column_name_1, column_name_2 FROM table_name;
 
 -- To to select distinct values in a columns in a table in a db
-SELECT DISTINCT columns_name  FROM table_name;
+SELECT DISTINCT column_name  FROM table_name;
 -- To to return the count of values use
-SELECT COUNT(DISTINCT columns_name) FROM table_name;
+SELECT COUNT(DISTINCT column_name) FROM table_name;
+-- To assign variable to returns
+SELECT COUNT(*) AS Number_of_value FROM (SELECT DISTINCT column_name FROM table_name);
