@@ -5,3 +5,5 @@ SELECT column_name_1, column_name_2 FROM table_name;
 
 -- To to select distinct values in a columns in a table in a db
 SELECT DISTINCT columns_name  FROM table_name;
+-- To to return the count of values use
+SELECT COUNT(DISTINCT columns_name) FROM table_name;
