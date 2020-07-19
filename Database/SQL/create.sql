@@ -11,3 +11,6 @@ SELECT COUNT(DISTINCT column_name) FROM table_name;
 SELECT COUNT(*) AS Number_of_value FROM (SELECT DISTINCT column_name FROM table_name);
 -- Setting condition on queries
 SELECT * FROM table_name WHERE Country="Mexico";
+-- Using AND, OR, NOT, 
+SELECT * FROM table_name WHERE (Country="Nexico" AND Country="Nigeria") OR Country="Eygpt";
+SELECT * FROM table_name WHERE NOT Country="Nexico" AND Country="Nigeria";
