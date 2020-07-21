@@ -16,3 +16,4 @@ SELECT * FROM table_name WHERE (Country="Nexico" AND Country="Nigeria") OR Count
 SELECT * FROM table_name WHERE NOT Country="Nexico" AND Country="Nigeria";
 -- Use ORDER BY keyword
 SELECT * FROM table_name ORDER BY Country;
+SELECT * FROM table_name ORDER BY Country ASC, Customer DESC;
