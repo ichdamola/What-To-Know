@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="employee_loan_report_view" model="ir.ui.view">
+			<field name="name">Employee Loan Report</field>
+			<field name="model">emp.loan.report</field>
+			<field name="arch" type="xml">
+				<form string="Loan Report" version="7.0">
+					<sheet>
+						<group>
+							<field name="filter" />
+							<field name="condition"
+								attrs="{'readonly':[('filter', 'in', ('state','loan_type'))]}" />
+							<field name="loan_type" attrs="{'readonly':[('filter', '!=', 'loan_type')]}" />
+							<newline />
+							<separator string="Employee's" colspan="4" />
+							<field name="employee_ids" nolabel="1" colspan="4" />
+							<separator string="Condition Values" colspan="4" />
+							<field name="date1"
+								attrs="{'readonly':[('filter', 'in', ('state','principal','loan_type'))]}" />
+							<field name="date2"
+								attrs="{'readonly':['|',('condition', '!=', 'range'),('filter', 'in', ('state','principal'))]}" />
+							<field name="amount1" attrs="{'readonly':[('filter', '!=', 'principal')]}" />
+							<field name="amount2"
+								attrs="{'readonly':['|',('filter', '!=', 'principal'),('condition', '!=', 'range')]}" />
+							<field name="state" attrs="{'readonly':[('filter', '!=', 'state')]}" />
+							<footer>
+								<button name="print_report" string="Print Now" type="object"
+									class="oe_highlight" />
+								or
+								<button string="Cancel" class="oe_link" special="cancel" />
+							</footer>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_emp_loan_report" model="ir.actions.act_window">
+			<field name="name">Loan Report</field>
+			<field name="res_model">emp.loan.report</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="employee_loan_report_view" />
+			<field name="target">new</field>
+		</record>
+
+		<menuitem name="Loan Report" id="menu_emp_loan_report"
+			parent="menu_report_loan_root" action="action_emp_loan_report" icon="STOCK_PRINT" />
+
+	</data>
+</openerp>

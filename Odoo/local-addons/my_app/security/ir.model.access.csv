@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_local-addons/my_app_local-addons/my_app,local-addons/my_app.local-addons/my_app,model_local-addons/my_app_local-addons/my_app,,1,0,0,0

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="signup_form" name="Signup Form">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                      <h1 style="text-align: center; padding-top: 60px; font-weight: 1000">Register</h1>
+                      <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <form  class="form-horizontal" style="width:90%;" action="/signup/submit" enctype="multipart/form-data">
+
+                                <div>
+                                    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="false">
+                                        <div class="carousel-inner">
+                                        <!-- <form  class="form-horizontal" style="width:50%;" action="/signup/submit">
+     -->                                    <div class="carousel-item active" data-interval="false"><h1>Contact Information</h1>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Your Name" name="name" id="name" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Emergency Contact" name="emergency_contact" id="emergency_contact" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" type="number" placeholder="Emergency Phone" name="emergency_phone" id="emergency_phone" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Home Address" name="home_id" id="home_id" required="True"/>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item" data-interval="false"><h1>Birth</h1>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" type="date" placeholder="Date of Birth" name="birthday" id="birthday" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Place of Birth" name="place_of_birth" id="place_of_birth" required="True"/>
+                                                </div>
+                                                <input class="form-control form-control-lg" placeholder="Country of Birth" name="birth_country" id="birth_country" required="True"/>
+                                                
+                                            </div>
+                                            <div class="carousel-item" data-interval="false"><h1>Education</h1>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Level of Certification" name="certificate_level" id="certificate_level" required="True"/><small>Bachelors, Masters or Other</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Field of Study" name="study_field" id="study_field" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="School" name="study_school" id="study_school" required="True"/>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item" data-interval="false"><h1>Status</h1>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Gender" name="genders" id="genders" required="True"/><small>Male or Female</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Marital Status" name="marital_status" id="marital_status" required="True"/><small>Single, Married, Widower, Divorce</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Children" name="children" id="children" required="True"/>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item" data-interval="false"><h1>Citizenship and other Info</h1>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Nationality" name="country_ids" id="country_ids" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Identification Number" name="identification_id" id="identification_id" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Passport Number" name="passport_id" id="passport_id" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Bank Account Number" name="bank_account_ids" id="bank_account_ids" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Account Holder Name" name="account_name" id="account_name" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Bank Name" name="bank_name" id="bank_name" required="True"/>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item" data-interval="false"><h1>Work Information</h1>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Work Address" name="address_ids" id="address_ids" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Work Location" name="work_location" id="work_location" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Work Email" name="work_email" id="work_email" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Work Mobile" name="mobile_phone" id="mobile_phone" required="True"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control form-control-lg" placeholder="Work Phone" name="work_phone" id="work_phone" required="True"/>
+                                                </div>
+                                                
+                                            </div>
+                                            <!-- <div class="carousel-item" data-interval="false">
+                                                
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <button style="margin-top:0rem;" type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                      </div>
+                        
+                </div>
+                <div class="container">
+                    <button style="border-radius:10px;"><a href="#carouselExampleInterval" role="button" data-slide="prev">Previous</a></button>
+                    <button style="border-radius:10px;"><a href="#carouselExampleInterval" role="button" data-slide="next">Next</a></button>
+                </div>
+            </div>
+        </t>
+
+    </template>
+    <template id="signup_form_success" name="Signup Form Submitted">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <section class="slice py-7">
+                    <div class="container">
+                        <div class="row row-grid align-items-center">
+                            <div class="col-12 col-md-5 col-lg-6 order-md-2 text-center">
+                                <!-- Image -->
+                                <figure class="w-100">
+                                    <img alt="Image placeholder" src="/website/static/src/img/illustrations/illustration-7.svg" class="img-fluid mw-md-120"/>
+                                </figure>
+                            </div>
+                            <div class="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">
+                                <!-- Heading -->
+                                <h1 class="display-4 text-center text-md-left mb-3">
+                                    User successfully created
+                                </h1>
+                                <!-- Text -->
+                                
+                                <!-- Buttons -->
+                                <div class="text-center text-md-left mt-5">
+                                    <a href="/web/login" class="btn btn-primary btn-icon">
+                                        <span class="btn-inner--text">Login to your account</span>
+                                        <span class="btn-inner--icon"><i data-feather="chevron-right"></i></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

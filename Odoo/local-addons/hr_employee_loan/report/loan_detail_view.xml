@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="loan_report_analysis_qweb">
+            <style>
+            .top_hide{
+                border-top:hidden;
+            }
+            .show_borders_tr{
+                border:1px solid #D0D0D0;
+                padding: 1px 00px 1px 00px;
+            }
+            .show_borders_td{
+                border:1px solid #D0D0D0;
+                width:25%;
+                text-align:center;
+            }        
+            </style>
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                    <div class="page" id="pop">
+                        <table class="table">
+                                    <t t-if = "o.state !='draft'">
+                                        <span><h3><b>Loan N° <t t-esc="o.name"/></b></h3></span>
+                                    </t>
+                            <tr style="border-top:hidden;">
+                                <td>
+                                    <table class="table">
+                                        <tr class="top_hide">
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Name :</b></span>
+                                                <span><b><t t-esc="o.employee_id.name"></t></b></span><br/>
+                                                <t t-if="o.employee_id.parent_id">
+                                                    <!--span t-esc="o.employee_id.parent_id"/-->
+                                                    <span>Manager :</span><br/>
+                                                    <!--span t-esc="o.employee_id.parent_id"/-->
+                                                    <span t-esc="o.employee_id.parent_id.name"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr class="top_hide">
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Department : </b></span>
+                                                <span><b><t t-esc="o.department_id.name"/></b></span>
+                                            </td>
+                                        </tr>
+                                        <tr class="top_hide">
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Principal Amount : </b></span>
+                                                <span><b><t t-esc="o.principal_amount" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></b></span>
+                                            </td>
+                                        </tr>
+                                        <tr class="top_hide"> 
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Interest Rate    :</b></span>
+                                                <span><b><t t-esc="o.int_rate"/></b></span>
+                                            </td>
+                                        </tr>
+                                        <tr class="top_hide">
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Duration         :</b></span>
+                                                <span><b><t t-esc="o.duration"/></b></span>
+                                            </td>                        
+                                        </tr>
+                                        <tr class="top_hide">
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Interest Mode    :</b></span>
+                                                <span><b><t t-esc="o.interest_mode == 'flat' and 'Flat' or 'Reducing'"/></b></span>
+                                            </td>
+                                        </tr>
+                                        <tr class="top_hide">
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Loan Type    :</b></span>
+                                                <span><b><t t-esc="o.loan_type.name"/></b></span>
+                                            </td>
+                                        </tr>
+                                        <tr class="top_hide">
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Payment Type    :</b></span>
+                                                <span><b><t t-esc="o.loan_type.payment_method == 'salary' and 'Deduction from salary' or 'Cash/Cheque'"/></b></span>
+                                            </td>                        
+                                        </tr>
+                                        <tr class="top_hide" id="page_inherit">
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Disbursement Type    :</b></span>
+                                                <span><b><t t-esc="o.loan_type.disburse_method == 'payroll' and 'From payroll' or 'From loan'"/></b></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="table">
+                                        <tr class="top_hide">
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Date Applied  :</b></span>
+                                                <span><b><t t-esc="o.date_applied"/></b></span>
+                                            </td>
+                                        </tr>
+                                        <tr class="top_hide">
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Date Approved :</b></span>
+                                                <span><b><t t-esc="o.date_approved"/></b></span>
+                                            </td>
+                                        </tr>
+                                        <tr class="top_hide">
+                                            <td style="padding:1px 00px 1px 00px;">
+                                                <span><b>Date Repayment:</b></span>
+                                                <span><b><t t-esc="o.date_repayment"/></b></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <table class="table">
+                            <thead>
+                                <tr class="show_borders_tr">
+                                    <th class="show_borders_td"><span>Interest Amount</span></th>
+                                    <th class="show_borders_td"><span>Total</span></th>
+                                    <th class="show_borders_td"><span>Amount Received</span></th>
+                                    <th class="show_borders_td"><span>Amount Due</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="show_borders_tr">
+                                    <td class="show_borders_td"><span t-esc="o.total_interest_amount" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}' /></td>
+                                    <td class="show_borders_td"><span t-esc="o.final_total" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+                                    <td class="show_borders_td"><span t-esc="o.total_amount_paid" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+                                    <td class="show_borders_td"><span t-esc="o.total_amount_due" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+                                </tr>
+                            </tbody>
+                        </table>    
+                        <t t-if="o.state != 'draft'">
+                            <span><h3><b>Installments</b></h3></span>
+                            <table class="table">
+                                    <tr>
+                                        <th>N°</th>
+<!--                                        <th>Opening Bal.</th-->
+                                        <th>EMI</th>
+                                        <th>Principal</th>
+                                        <th>Interest</th>
+                                        <th>From</th>
+                                        <th>To</th>
+<!--                                        <th>Closing Bal.</th-->
+                                        <th>State</th>
+                                    </tr>
+                                <tbody>
+                                  <!--  <t t-foreach="get_lines(o.installment_lines)" t-as="installment_lines"> -->
+                                  <t t-foreach="o.installment_lines" t-as="installment_lines">
+                                        <tr>
+                                            <td><span t-esc="installment_lines.install_no"/></td>
+<!--                                            <td><span t-esc="installment_lines['opening_bal']" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td-->
+                                            <td><span t-esc="installment_lines.total" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+                                            <td><span t-esc="installment_lines.principal_amt" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+                                            <td><span t-esc="installment_lines.interest_amt" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+                                            <td><span t-esc="installment_lines.date_from"/></td>
+                                            <td><span t-esc="installment_lines.date_to"/></td>
+<!--                                            <td><span t-esc="installment_lines['closing_bal']" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td-->
+                                            <td><span t-esc="installment_lines.state == 'paid' and 'Paid' or 'Unpaid'"/></td>                                
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+                        <span><h3><b>Policies</b></h3></span>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Code</th>
+                                    <th>Type</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.loan_policy_ids" t-as="policies">
+                                    <tr>
+                                        <td><span t-esc="policies.name"/></td>
+                                        <td><span t-esc="policies.code"/></td>
+                                        <td><span t-esc="policies.policy_type == 'maxamt' and 'Max Loan Amount' or policies.max_loan_type == 'basic' and 'ON BASIC' or policies.max_loan_type == 'gross' and 'ON GROSS' or  policies.max_loan_type == 'fixed' and 'AS FIXED AMOUNT' or policies.policy_type == 'loan_gap' and 'Gap between two loans' or policies.policy_type == 'eligible_duration' and 'Eligible Duration'"/></td>
+                                        <td><span t-esc="policies.policy_value" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>                            
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<odoo>
+  <template id="helloworld" name="Hello World Template">
+  	<xpath expr="." position="inside">
+
+        <link rel="stylesheet" type="text/css" href="/library_website/static/src/css/library.css"/>
+     </xpath>
+     
+      <t t-call="website.layout">
+        <h1 class='text-strikeout'>Hello again World !</h1>
+      </t>
+  </template>
+</odoo>
+

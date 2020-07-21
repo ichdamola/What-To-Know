@@ -1,0 +1,135 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="tmp_signup_form" name="Signup Form">
+        <t t-call="website.layout">>
+                <t t-call-assets="web.assets_backend" t-js="false"/>
+                <t t-call-assets="theme_forweb.my_js" t-js="false"/>
+                <t t-call-assets="web.assets_common" t-css="false"/>
+                    <div class="container">
+                        <div class="col-md-12">
+                            <form id="regForm" action="/signup/submit">
+                                <h1>Register</h1>
+                                <div class="tab">Contact Information:
+                                    <input placeholder="Private Address" name="address_home_id" id="address_home_id" oninput="this.className = ''"/>
+                                    <input placeholder="Emergency Contcact" name="emergency_contact" id="emergency_contact" oninput="this.className = ''"/>
+                                    <input placeholder="Emergency Phone" name="emergency_phone" id="emergency_phone" oninput="this.className = ''"/>
+                                </div>
+
+                                <div class="tab">Birth:
+                                    <input placeholder="Date of Birth" name="birthday" id="birthday" oninput="this.className = ''"/>
+                                    <input placeholder="Place of Birth" name="place_of_birth" id="place_of_birth" oninput="this.className = ''"/>
+                                    <input placeholder="Country of Birth" name="country_of_birth" id="country_of_birth" oninput="this.className = ''"/>
+                                </div>
+
+                                <div class='tab'>Education:
+                                    <input placeholder="Certificate Level" name="certificate" id="certificate" oninput="this.className = ''"/>
+                                    <input placeholder="Field of study" name="study_field" id="study_field" oninput="this.className = ''"/>
+                                    <input placeholder="School" name="study_school" id="study_school" oninput="this.className = ''"/>
+                                </div>
+
+                                <div class="tab">Status:
+                                    <input placeholder="Gender" name="gender" id="gender" oninput="this.className = ''"/>
+                                    <input placeholder="Marital Status" name="marital" id="marital" oninput="this.className = ''"/>
+                                    <input placeholder="Number of children" name="children" id="children" oninput="this.className = ''"/>
+                                </div>
+
+                                <div class="tab">Citizenship and other info:
+                                    <input placeholder="Nationality" name="country_id" id="country_id" oninput="this.className = ''"/>
+                                    <input placeholder="Identification Number" name="identification_id" id="identification_id" oninput="this.className = ''"/>
+                                    <input placeholder="Passport Number" name="passport_id" id="passport_id" oninput="this.className = ''"/>
+                                    <input placeholder="Bank Account Number" name="bank_account_id" id="bank_account_id" oninput="this.className = ''"/>
+                                </div>
+
+                                <div class="tab">Contact Information:
+                                    <input placeholder="Work Address" name="address_id" id="address_id" oninput="this.className = ''"/>
+                                    <input placeholder="Work Location" name="work_location" id="work_location" oninput="this.className = ''"/>
+                                    <input placeholder="Work Email" name="work_email" id="work_email" oninput="this.className = ''"/>
+                                    <input placeholder="Work Mobile" name="mobile_phone" id="mobile_phone" oninput="this.className = ''"/>
+                                    <input placeholder="Work Phone" name="work_phone" id="work_phone" oninput="this.className = ''"/>
+                                </div>
+                                <div class="tab">Position:
+                                    <input placeholder="Department" name="department_id" id="department_id" oninput="this.className = ''"/>
+                                    <input placeholder="Job Position" name="job_id" id="job_id" oninput="this.className = ''"/>
+                                    <input placeholder="Job Title" name="job_title" id="job_title" oninput="this.className = ''"/>
+                                    <input placeholder="Category" name="category_id" id="category_id" oninput="this.className = ''"/>
+                                </div>
+                                <div style="overflow:auto;">
+                                  <div style="float:right;">
+                                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                                  </div>
+                                </div>
+
+                                <!-- Circles which indicates the steps of the form: -->
+                                <div style="text-align:center;margin-top:40px;">
+                                  <span class="step"></span>
+                                  <span class="step"></span>
+                                  <span class="step"></span>
+                                  <span class="step"></span>
+                                  <span class="step"></span>
+                                  <span class="step"></span>
+                                  <span class="step"></span>
+                                </div>
+
+                                <!-- <input type="text" class="form-control" name="name" id="name" required="true" /> -->
+                                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            </form>
+                        </div>
+                    </div>
+            </div>
+          </t>
+    </template>
+    <template id="signup_form_success" name="Signup Form Successfully Submitted">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="alert alert-success">
+                            User created successfully.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
+
+<t t-call="website.layout">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+                <t t-call-assets="web.assets_backend" t-js="false"/>
+                <t t-call-assets="theme_forweb.my_js" t-js="false"/>
+                <t t-call-assets="web.assets_common" t-css="false"/>
+                <!-- <script xmlns="http://www.w3.org/1999/xhtml" src="/opt/odoo12/odoo12/odoo-custom-addons/theme_forweb/static/src/js/my_js.js"></script> -->
+                    <div class="container">  
+                          <h1>Register</h1>
+                        <form  class="form-horizontal" style="width:90%;" action="/signup/submit" enctype="multipart/form-data">
+
+                            <div>
+                                <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="false">
+                                    <div class="carousel-inner">
+                                    <!-- <form  class="form-horizontal" style="width:50%;" action="/signup/submit">
+ -->                                    <div class="carousel-item active" data-interval="false">
+                                    
+                                        </div>
+                                        <div class="carousel-item" data-interval="false">
+                    
+                                        </div>
+                                       
+                                                         
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                          <!-- </form> -->
+
+                    </div>
+                    <div>
+                      <button><a href="#carouselExampleInterval" role="button" data-slide="prev">Previous</a></button>
+                      <button><a href="#carouselExampleInterval" role="button" data-slide="next">Next</a></button>
+                    </div>
+        </t> -->

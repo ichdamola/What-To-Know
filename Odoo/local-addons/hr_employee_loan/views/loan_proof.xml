@@ -1,0 +1,43 @@
+<odoo>
+	<data>
+		
+		<record model="ir.ui.view" id="view_loan_proof_form">
+			<field name="name">loan.proof.form</field>
+			<field name="model">loan.proof</field>
+			<field name="arch" type="xml">
+				<form string="Loan Proofs">
+					<group>
+						<group>
+							<field name="name" />
+							<field name="mandatory" />
+						</group>
+						<group/>
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_loan_proof_tree">
+			<field name="name">loan.proof.tree</field>
+			<field name="model">loan.proof</field>
+			<field name="arch" type="xml">
+				<tree string="Loan Proofs">
+					<field name="name" />
+					<field name="mandatory" />
+				</tree>
+			</field>
+		</record>
+		
+		<record id="action_loan_proof" model="ir.actions.act_window">
+			<field name="name">Loan Proofs</field>
+			<field name="res_model">loan.proof</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help">Configure different loan Proofs</field>
+		</record>
+
+		<menuitem parent="policy_configure" sequence="9" 
+			id="menu_loan_proof" name="Loan Proofs" action="action_loan_proof" />
+		
+	</data>
+</odoo>

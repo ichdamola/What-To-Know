@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="loan_report_inherit_template" inherit_id="hr_employee_loan.loan_report_analysis_qweb">
+		<xpath expr="//tr[@id='page_inherit']" position="after">
+			<tr class="top_hide" id="page_inherit">
+			<td style="padding:1px 00px 1px 00px;">
+				 <span><b>Number of plots   :</b></span>
+				 <span><b><t t-esc="o.plots"/></b></span>
+                 
+			</td>
+			</tr>
+		</xpath>
+	</template>
+</odoo>

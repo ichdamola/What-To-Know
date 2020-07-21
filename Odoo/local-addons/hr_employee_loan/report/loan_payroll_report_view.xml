@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<!-- Loan Analysis View -->
+         
+        <record id="view_report_loan_tree" model="ir.ui.view">
+            <field name="name">loan.report.tree</field>
+            <field name="model">loan.analysis.report</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+            <tree string="Loan Analysis"  create="false">
+                <field name="loan_month" invisible="1"/>
+                <field name="loan_year" invisible="1"/>
+                <field name="loan_day" invisible="1"/>
+                <field name="state"  invisible="1"/>
+                <field name="employee_id"  invisible="1"/>
+                <field name="date_applied" invisible="1"/>
+                <field name="date_approved" invisible="1"/>
+                <field name="date_repayment" invisible="1"/>
+                <field name="duration" invisible="1"/>
+                <field name="interest_mode" invisible="1"/>
+                <field name="principal_amount" invisible="1"/>
+                <field name="final_total" invisible="0" sum="Total"/>
+                <field name="total_amount_paid" sum="Received"/>
+                <field name="total_amount_due" sum="Due"/>
+                <field name="total_interest_amount" sum="Int.Amt"/>
+                <field name="max_loan_amt" sum="Max.Loan.Amt"/>
+             </tree>
+            </field>
+        </record>
+
+<!-- Loan Graph View -->
+
+        <record id="view_report_loan_graph" model="ir.ui.view">
+            <field name="name">loan.report.graph</field>
+            <field name="model">loan.analysis.report</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph orientation="vertical" string="Loan Analysis" type="bar">
+                    <field name="employee_id"/>
+                    <field name="final_total" operator="+"/>
+                    <field group="True" name="state"/>
+                </graph>
+            </field>
+        </record>
+
+<!-- Loan Search View -->
+
+        <record id="view_report_loan_filter" model="ir.ui.view">
+            <field name="name">loan.report.select1</field>
+            <field name="model">loan.analysis.report</field>
+            <field name="arch" type="xml">
+                <search string="Loan Analysis">
+                    <!--<group>
+                        <filter string="Year" icon="terp-go-year" name="year"
+                            domain="[('date_approved','&lt;=', time.strftime('%%Y-%%m-%%d')),('date_approved','&gt;=',time.strftime('%%Y-01-01'))]"
+                            help="Loans created in current year"/>
+                        <filter string="Month" icon="terp-go-month" name="this_month"
+                            domain="[('date_approved','&lt;=',(datetime.date.today()+relativedelta(day=31)).strftime('%%Y-%%m-%%d')),('date_approved','&gt;=',(datetime.date.today()-relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]"
+                            help="Loans created in current month"/>
+                        <filter icon="terp-go-month" string="Month-1"
+                            domain="[('date_approved','&lt;=', (datetime.date.today() - relativedelta(day=31, months=1)).strftime('%%Y-%%m-%%d')),('date_approved','&gt;=',(datetime.date.today() - relativedelta(day=1,months=1)).strftime('%%Y-%%m-%%d'))]"
+                            help="Loans created in last month"/>
+                        <separator orientation="vertical" />
+                        <filter icon="terp-camera_test"
+                            name="approved"
+                            string="Approved"
+                            domain="[('state','=', 'approved')]"
+                            help="Show Approved Loans"/>
+                        <filter icon="terp-gtk-media-pause"
+                            string="Applied"
+                            name="applied"
+                            domain="[('state','=', 'applied')]"
+                            help="Show Applied Loans"/>
+                        <separator orientation="vertical" />
+                        <filter icon="terp-dolar"
+                            string="Paid"
+                            domain="[('state','=','paid')]"
+                            help="Loans that are paid off"/>
+                        <filter icon="gtk-cancel"
+                            string="Rejected"
+                            domain="[('state','=','rejected')]"
+                            help="Show Rejected Loans"/>
+                        <separator orientation="vertical"/>
+                        <field name="employee_id">
+                            <filter icon="terp-personal+" 
+                                domain="[('employee_id.user_id','=',uid)]"
+                                help="My Loan(s)"/>
+                        </field>
+                    </group> -->
+                    <newline/>
+                    <group expand="0" string="Extended Filters..." >
+                        <field name="interest_mode" string="Interest Mode"/>
+                        <field name="date_applied"/>
+                        <field name="date_approved"/>
+                        <field name="date_repayment"/>
+                    </group>
+                    <newline/>
+                    <group expand="1" string="Group By...">
+                        <filter string="Employee" name="employee" icon="terp-personal"
+                            domain="[]" context="{'group_by':'employee_id'}" />
+                        <filter string="Interest Mode" icon="terp-stock_effects-object-colorize" context="{'group_by':'interest_mode'}" />
+                        <filter string="State" icon="terp-stock_effects-object-colorize" context="{'group_by':'state'}" />
+                        <filter string="Approved Date" icon="terp-go-year"
+                            domain="[]" context="{'group_by':'date_approved'}"/>
+                        <filter string="Applied Date" icon="terp-go-year"
+                            domain="[]" context="{'group_by':'date_applied'}"/>
+                        <filter string="Repayment Date" icon="terp-go-year"
+                            domain="[]" context="{'group_by':'date_repayment'}"/>
+                        <filter string="Year" icon="terp-go-year"
+                            domain="[]" context="{'group_by':'loan_year'}"/>
+                        <filter string="Month" icon="terp-go-month"
+                            domain="[]" context="{'group_by':'loan_month'}"/>
+                        <filter string="Day" icon="terp-go-today"
+                            domain="[]" context="{'group_by':'loan_day'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+       <record id="action_report_loan" model="ir.actions.act_window">
+           <field name="name">Loan Analysis</field>
+           <field name="res_model">loan.analysis.report</field>
+           <field name="view_type">form</field>
+           <field name="view_mode">tree,graph</field>
+           <field name="context">{'search_default_year': 1,"search_default_this_month":1, 'group_by_no_leaf':1, 'group_by':[]}</field>
+           <field name="domain">[]</field>
+       </record>
+       <record model="ir.actions.act_window.view" id="action_report_loan_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_report_loan_tree"/>
+            <field name="act_window_id" ref="action_report_loan"/>
+       </record>
+       <record model="ir.actions.act_window.view" id="action_report_loan_graph">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_report_loan_graph"/>
+            <field name="act_window_id" ref="action_report_loan"/>
+       </record>
+	   
+	   <menuitem name="Loan" id="menu_report_loan_root" groups="hr.group_hr_user" 
+            parent="hr.menu_human_resources_configuration"/>
+       <menuitem name="Loan Analysis" id="menu_report_loan_tree"
+            parent="menu_report_loan_root" action="action_report_loan"/>
+
+    </data>
+</openerp>

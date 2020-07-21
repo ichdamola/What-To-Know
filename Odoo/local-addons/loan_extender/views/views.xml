@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?> 
+
+<odoo>
+  <!-- Extending the Loan module  -->
+  <record id="employee_loan_details_inherit" model="ir.ui.view">
+    <field name="name">employee.loan.details.inherit</field>
+    <field name="model">employee.loan.details</field>
+    <field name="inherit_id" ref="hr_employee_loan.view_loan_form"/>
+    <field name="arch" type="xml">
+      
+      <field name="loan_type" position="after">
+        <field name="plots" />
+        
+      </field>
+    </field>
+  </record>
+</odoo>

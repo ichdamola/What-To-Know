@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wkf_loan" model="workflow">
+            <field name="name">Loan Payroll Workflow</field>
+            <field name="osv">employee.loan.details</field>
+            <field name="on_create">True</field>
+        </record>
+        
+         <!-- Activity -->
+        
+        <record id="act_draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_loan"/>
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+        </record>
+        
+         <record id="act_apply" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_loan"/>
+            <field name="name">apply</field>
+            <field name="kind">function</field>
+            <field name="action">action_applied()</field>
+        </record>
+        
+        <record id="act_cancel" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_loan"/>
+            <field name="name">cancel</field>
+            <field name="flow_stop">True</field>
+            <field name="kind">stopall</field>
+            <field name="action">action_cancel()</field>
+        </record>
+       
+        
+        <record id="act_approved" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_loan"/>
+            <field name="name">approved</field>
+            <field name="kind">function</field>
+            <field name="action">action_approved()</field>
+        </record>
+        
+        
+         <record id="act_rejected" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_loan"/>
+            <field name="name">rejected</field>
+            <field name="kind">function</field>
+            <field name="action">action_rejected()</field>
+        </record>
+        
+        <record id="act_disburse" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_loan"/>
+            <field name="name">disburse</field>
+            <field name="kind">function</field>
+            <field name="action">action_disburse()</field>
+        </record>
+        
+        
+         <!-- Transistion -->
+         
+        <record id="trans_draft_apply" model="workflow.transition">
+            <field name="act_from" ref="act_draft"/>
+            <field name="act_to" ref="act_apply"/>
+            <field name="signal">applied</field>
+            <!--<field name="condition">principal_amount < max_loan_amt</field>-->
+        </record>
+        
+        <record id="trans_draft_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_draft"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">cancel</field>
+        </record>
+
+        <record id="trans_apply_approved" model="workflow.transition">
+            <field name="act_from" ref="act_apply"/>
+            <field name="act_to" ref="act_approved"/>
+            <field name="signal">approved</field>
+        </record>
+        
+        <record id="trans_approved_disburse" model="workflow.transition">
+            <field name="act_from" ref="act_approved"/>
+            <field name="act_to" ref="act_disburse"/>
+            <field name="signal">disburse</field>
+        </record>
+        
+        <record id="trans_apply_reject" model="workflow.transition">
+            <field name="act_from" ref="act_apply"/>
+            <field name="act_to" ref="act_rejected"/>
+            <field name="signal">reject</field>
+        </record>
+
+    </data>
+</openerp>

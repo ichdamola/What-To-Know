@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="seq_loan_loan" model="ir.sequence">
+            <field name="name">Loan</field>
+            <field name="code">employee.loan.details</field>
+            <field name="prefix">LOAN/</field>
+            <field name="suffix">/%(year)s</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="hr_salary_rule_loan_installment" model="hr.salary.rule">
+            <field name="code">INSTALL</field>
+            <field name="name">Installment Loan</field>
+            <field name="category_id" ref="hr_payroll.DED"/> 
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -employee.get_installment_loan(employee.id, payslip.date_from, payslip.date_to)</field>
+            <field name="is_loan_payment">True</field>
+            <field name="sequence" eval="150"/>
+        </record>
+        
+         <record id="hr_salary_rule_loan_interest" model="hr.salary.rule">
+            <field name="code">INTEREST_LOAN</field>
+            <field name="name">Interest Loan</field>
+            <field name="category_id" ref="hr_payroll.DED"/> 
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -employee.get_interest_loan(employee.id, payslip.date_from, payslip.date_to)</field>
+            <field name="sequence" eval="152"/>
+        </record>
+
+    </data>
+</odoo>

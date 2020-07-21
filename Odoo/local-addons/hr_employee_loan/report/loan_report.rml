@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(612.0,792.0)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="57.0" y1="57.0" width="498" height="678"/>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,1" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,1" stop="0,1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,1" stop="1,1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,1" stop="2,1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="3,1" stop="3,1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="4,1" stop="4,1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="5,1" stop="5,1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="6,1" stop="6,1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="7,1" stop="7,1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="8,1" stop="8,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="8,1" stop="8,1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,2" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="8,2" stop="8,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,3" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="8,3" stop="8,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,4" stop="0,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="8,4" stop="8,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,5" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="4,-1" stop="4,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="5,-1" stop="5,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="6,-1" stop="6,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="7,-1" stop="7,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#000000" start="8,5" stop="8,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="8,-1" stop="8,-1"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="terp_tblheader_Details" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="P2" fontName="Helvetica" fontSize="8.0" leading="10"/>
+    <paraStyle name="P3" fontName="Helvetica" fontSize="8.0" leading="10"/>
+    <paraStyle name="P4" fontName="Helvetica" fontSize="8.0" leading="10"/>
+    <paraStyle name="P5" fontName="Helvetica" fontSize="8.0" leading="10"/>
+    <paraStyle name="P6" fontName="Helvetica" fontSize="7.0" leading="9"/>
+    <paraStyle name="P7" fontName="Helvetica" fontSize="8.0" leading="10" textColor="#000000"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="Table Contents" fontName="Helvetica"/>
+    <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER"/>
+    <images/>
+  </stylesheet>
+  <story>
+    <para style="P1">LOAN DETAILS</para>
+    <para style="Standard">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="56.0,55.0,55.0,55.0,55.0,55.0,55.0,55.0,55.0" style="Table1">
+      <tr>
+        <td>
+          <para style="terp_tblheader_Details">Name</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details">Date Approved</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details">Principal</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details">Rate</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details">Duration</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details">Interest Mode</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details">Total</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details">Received</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details">Due</para>
+        </td>
+      </tr>
+      </blockTable>
+   <section>
+    <para style="Standard">[[ repeatIn(get_loan(data['form']),'loan') ]]</para>
+    <blockTable colWidths="56.0,55.0,55.0,55.0,55.0,55.0,55.0,55.0,55.0" style="Table1">
+      <tr>
+        <td>
+          <para style="P5">[[ loan.employee_id.name ]]</para>
+        </td>
+        <td>
+          <para style="P7">[[ loan.date_approved ]]</para>
+        </td>
+        <td>
+          <para style="P4">[[ loan.principal_amount ]]</para>
+        </td>
+        <td>
+          <para style="P5">[[ loan.int_rate ]]</para>
+        </td>
+        <td>
+          <para style="P5">[[ loan.duration ]]</para>
+        </td>
+        <td>
+          <para style="P5">[[ loan.interest_mode  == 'flat' and 'Flat' or 'Reducing' ]]</para>
+        </td>
+        <td>
+          <para style="P5">[[ loan.final_total ]]</para>
+        </td>
+        <td>
+          <para style="P5">[[ loan.total_amount_paid ]]</para>
+        </td>
+        <td>
+          <para style="P5">[[ total.amount_due ]]</para>
+        </td>
+      </tr>
+      </blockTable>
+      </section>
+      <section>
+      <blockTable colWidths="56.0,55.0,55.0,55.0,55.0,55.0,55.0,55.0,55.0" style="Table1">
+      <tr>
+      <td><para style="P5"><font color="white"> </font></para></td>
+      <td><para style="P5"><font color="white"> </font></para></td>
+      <td><para style="P5"><font color="white"> </font></para></td>
+      <td><para style="P5"><font color="white"> </font></para></td>
+      <td><para style="P5"><font color="white"> </font></para></td>
+      <td><para style="P5"><font color="white"> </font></para></td>
+        <td>
+          <para style="terp_tblheader_Details">[[ formatLang(get_total()) ]]</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details">[[ formatLang(get_total_received() ) ]]</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details">[[ formatLang(get_total_due() ) ]]</para>
+        </td>
+      </tr>
+      </blockTable>
+    </section>
+    
+  </story>
+</document>

@@ -1,0 +1,960 @@
+<odoo>
+	<data>
+
+		<menuitem id="loan_root" name="Loans" sequence="9" />
+
+		<menuitem id="loan_root_account" parent="loan_root" name="Accounting" sequence="9"
+		          groups="account.group_account_invoice"/> 
+
+		<menuitem id="policy_configure" parent="loan_root" name="Configuration"
+		 		  groups="account.group_account_invoice,hr.group_hr_user"/>
+
+		<!-- Loan Repayment Menu -->
+
+		<!-- record id="action_loan_repayment" model="ir.actions.act_window">
+			<field name="name">Loan Repayment</field>
+			<field name="res_model">account.voucher</field>
+			<field name="view_type">form</field>
+			<field name="domain">[('journal_id.type', 'in', ['bank', 'cash']), ('type','=','receipt')]</field>
+			<field name="context">{'type':'receipt'}</field>
+			<field name="search_view_id" ref="account_voucher.view_voucher_filter_customer_pay" />
+			<field name="view_id" eval="False" />
+			<field name="target">current</field>
+		</record>
+
+		<record id="action_loan_receipt_tree" model="ir.actions.act_window.view">
+			<field eval="1" name="sequence" />
+			<field name="view_mode">tree</field>
+			<field name="act_window_id" ref="action_loan_repayment" />
+		</record>
+
+		<record id="action_loan_receipt_form" model="ir.actions.act_window.view">
+			<field eval="2" name="sequence" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="account_voucher.view_vendor_receipt_form" />
+			<field name="act_window_id" ref="action_loan_repayment" />
+		</record>
+
+		<menuitem action="action_loan_repayment" id="loan_loan_repayment" sequence="90000" parent="loan_root_account" name="Loan Re-payment" /--><!--PROBUSE-->
+
+		<!-- Loan Type -->
+
+		<record id="view_loan_type_filter" model="ir.ui.view">
+			<field name="name">loan.type.list.select</field>
+			<field name="model">loan.type</field>
+			<field name="arch" type="xml">
+				<search string="Search Loan Type">
+					<filter name="flat_interest" icon="terp-check" string="Flat Interest" domain="[('interest_mode','=','flat')]" help="Loan Type with Flat Interest mode" />
+					<filter name="reducing_interest" icon="terp-check" string="Reducing Interest" domain="[('interest_mode','=','reducing')]" help="Loan Type with Reducing Interest mode" />
+					<separator orientation="vertical" />
+					<field name="name" />
+					<field name="int_rate" filter_domain="[('name','ilike',self)]" string="Int.Rate" />
+					<separator orientation="vertical" />
+					<field name="int_payable" />
+					<field name="company_id" widget="selection" groups="base.group_multi_company"/>
+					<group expand="0" string="Group By...">
+						<filter name="interest_mode" string="Interest Mode" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'interest_mode'}" />
+						<filter name="interet_payable" string="Interest Payable" icon="terp-check" domain="[]" context="{'group_by':'int_payable'}" />
+						<filter string="Company" name="company_id" groups="base.group_multi_company" icon="terp-go-home" context="{'group_by':'company_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="view_loan_type_tree" model="ir.ui.view">
+			<field name="name">loan.type.tree</field>
+			<field name="model">loan.type</field>
+			<field name="arch" type="xml">
+				<tree string="Loan Type">
+					<field name="name" />
+					<field name="int_payable" />
+					<field name="interest_mode" />
+					<field name="int_rate" />
+					<field name="payment_method" />
+					<field name="disburse_method" />
+					<field name="company_id" groups="base.group_multi_company"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_loan_type_form" model="ir.ui.view">
+			<field name="name">loan.type.form</field>
+			<field name="model">loan.type</field>
+			<field name="arch" type="xml">
+				<form string="Loan Type" version="7.0">
+					<sheet>
+						<div class="oe_title">
+							<label for="name" class="oe_edit_only" />
+							<h1>
+								<field name="name" />
+							</h1>
+							<label for="code" class="oe_edit_only" />
+							<h2>
+								<field name="code" colspan="2" />
+							</h2>
+						</div>
+						<group>
+							<separator string="General" colspan="4" />
+							<group>
+								<field name="int_payable" on_change="onchange_interest_payable(int_payable)" />
+								<field name="interest_mode" attrs="{'invisible':[('int_payable', '=', False)],'required':[('int_payable', '=', True)]}" />
+								<field name="int_rate" attrs="{'invisible':[('int_payable', '=', False)]}" />
+								<field name="loan_interest_account" attrs="{'invisible':[('int_payable', '=', False)], 'required':[('int_payable', '!=', False)]}" />
+							</group>
+							<group>
+								<field name="payment_method" />
+								<field name="disburse_method" />
+								<field name="company_id" widget="selection" groups="base.group_multi_company" />
+							</group>
+						</group>
+						<group>
+							<separator string="Loan Proofs" colspan="4" />
+							<field name="loan_proof_ids" nolabel="1" colspan="4" height="400" />
+							<separator string="Employee Categories" colspan="4" />
+							<field name="employee_categ_ids" nolabel="1" colspan="4" height="400" />
+							<separator string="Employees" colspan="4" />
+							<field name="employee_ids" nolabel="1" colspan="4" height="400"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_loan_type" model="ir.actions.act_window">
+			<field name="name">Loan Types</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">loan.type</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_loan_type_filter" />
+			<field name="help">Configure different loan types</field>
+		</record>
+
+		<menuitem action="action_loan_type" id="loan_type" parent="policy_configure" name="Loan Types" />
+
+
+		<!-- Loan Installment view -->
+
+		<record id="view_loan_installment_filter" model="ir.ui.view">
+			<field name="name">loan.install.list.select</field>
+			<field name="model">loan.installment.details</field>
+			<field name="arch" type="xml">
+				<search string="Search Loan Installment">
+					<filter name="paid" icon="terp-check" string="Paid" domain="[('state','=','paid')]" help="Installment that has been paid" />
+					<filter name="unpaid" icon="terp-check" string="Unpaid" domain="[('state','=','unpaid')]" help="Installment that haven't been paid" />
+					<separator orientation="vertical" />
+					<field name="employee_id" />
+					<field name="loan_id" filter_domain="[('name','ilike',self)]" string="Loan Number" />
+					<separator orientation="vertical" />
+					<field name="principal_amt" />
+					<group expand="0" string="Search on Dates">
+						<field name="date_from" />
+						<field name="date_to" />
+					</group>
+					<group expand="0" string="Group By...">
+						<filter name="loan" string="Loan" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'loan_id'}" />
+						<filter name="employee" string="Employee" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'employee_id'}" />
+						<separator orientation="vertical" />
+						<filter name="date_from" string="Date From" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'date_from'}" />
+						<filter name="date_to" string="Date To" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'date_to'}" />
+						<separator orientation="vertical" />
+						<filter name="state" string="State" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}" />
+						<separator orientation="vertical" />
+						<filter string="Company" name="company_id" groups="base.group_multi_company" icon="terp-go-home" context="{'group_by':'company_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="view_installment_tree" model="ir.ui.view">
+			<field name="name">loan.installment.tree</field>
+			<field name="model">loan.installment.details</field>
+			<field name="arch" type="xml">
+				<tree string="Loan Installments">
+					<field name="loan_id" />
+					<field name="employee_id" />
+					<field name="date_from" />
+					<field name="date_to" /><field name="currency_id" groups="base.group_multi_currency"/>
+					<field name="principal_amt" widget="monetary" options="{'currency_field': 'currency_id'}" sum="Principal" />
+					<field name="interest_amt" widget="monetary" options="{'currency_field': 'currency_id'}" sum="Interest" />
+					<field name="total" widget="monetary" options="{'currency_field': 'currency_id'}" sum="Total" />
+					<field name="state" />
+					<field name="int_move_id" colspan="2" invisible="1" />
+					<field name="company_id" invisible="1" groups="base.group_multi_company"/>
+					<button name="pay_installment" colspan="2" states="approve" string="Pay" confirm="You are trying to create EMI for this loan so make sure loan repayment for this loan type is not from payroll !" type="object" icon="terp-dolar" help="Pay Installment" />
+					<button name="book_interest" attrs="{'invisible':['|', ('interest_amt', '=', 0.0),('int_move_id', '!=', False)]}" colspan="2" string="Book Interest" type="object" icon="fa-check" help="Book Interest" />
+					<button name="action_approve" colspan="2" states="unpaid" string="Approve Payment" type="object" icon="fa-level-down fa-rotate-90" help="Approve Payment" />
+					<button name="action_reset" colspan="2" states="approve" string="Reset To Draft" type="object" icon="terp-stock_effects-object-colorize" help="Reset To Draft" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_installment_form" model="ir.ui.view">
+			<field name="name">installment.form</field>
+			<field name="model">loan.installment.details</field>
+			<field name="arch" type="xml">
+				<form string="Loan Installment" version="7.0">
+					<header>
+						<button name="pay_installment" class="oe_highlight" colspan="2" states="approve" string="Pay" confirm="You are trying to create EMI for this loan so make sure loan repayment for this loan type is not from payroll !" type="object" help="Pay Installment" />
+						<button name="book_interest" class="oe_highlight" attrs="{'invisible':['|', ('interest_amt', '=', 0.0),('int_move_id', '!=', False)]}" colspan="2" string="Book Interest" type="object" help="Book Interest" />
+						<button name="action_approve" class="oe_highlight" colspan="2" states="unpaid" string="Approve Payment" type="object" help="Approve Payment" />
+						<button name="action_reset" colspan="2" states="approve" string="Reset To Draft" type="object" help="Reset To Draft" />
+						<field name="state" colspan="2" widget="statusbar" />
+					</header>
+					<sheet>
+						<group col="4">
+							<field name="loan_id" />
+							<field name="employee_id" />
+							<field name="loan_type" readonly="1" />
+							<field name="loan_repayment_method" readonly="1" />
+							<field name="int_payable" invisible="1" />
+						</group>
+						<notebook>
+							<page string="Details">
+								<group col="4">
+									<field name="install_no" string="Installment No." />
+									<field name="date_from" /><field name="currency_id" groups="base.group_multi_currency"/>
+									<field name="principal_amt" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+									<field name="interest_amt" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+									<field name="total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+									<field name="move_id" />
+									<field name="int_move_id" attrs="{'invisible':[('int_payable', '=', False)]}" />
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_installment_graph" model="ir.ui.view">
+			<field name="name">linstallment.graph</field>
+			<field name="model">loan.installment.details</field>
+			<field name="arch" type="xml">
+				<graph string="Loan Installments" type="bar" orientation="horizontal">
+					<field name="employee_id" />
+					<field name="total" operator="+" />
+					<field name="state" group="True" />
+				</graph>
+			</field>
+		</record>
+
+		<record id="view_installment_calendar" model="ir.ui.view">
+			<field name="name">installment.calendar</field>
+			<field name="model">loan.installment.details</field>
+			<field name="arch" type="xml">
+				<calendar string="Installments" color="employee_id"
+					date_start="date_from" date_stop="date_to">
+					<field name="employee_id" />
+					<field name="total" />
+					<field name="state" />
+				</calendar>
+			</field>
+		</record>
+		
+		<record id="action_loan_installment" model="ir.actions.act_window">
+			<field name="name">Loan Installments</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">loan.installment.details</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,graph</field>
+			<field name="search_view_id" ref="view_loan_installment_filter" />
+			<field name="help">This shows you the detail installments related to
+				loan</field>
+		</record>
+
+
+		<!-- Policy view -->
+
+		<record id="view_loan_policy_filter" model="ir.ui.view">
+			<field name="name">loan.policy.list.select</field>
+			<field name="model">loan.policy</field>
+			<field name="arch" type="xml">
+				<search string="Search Loan Policies">
+					<group>
+						<field name="name" filter_domain="[('name','ilike',self)]" />
+						<field name="code" />
+						<field name="company_id" widget="selection" groups="base.group_multi_company"/>
+					</group>
+					<newline />
+					<group expand="0" string="Group By...">
+						<filter name="policy_type" string="Policy Type" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'policy_type'}" />
+						<filter name="company_id" string="Company" icon="terp-go-home" domain="[]" context="{'group_by':'company_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="view_policy_tree" model="ir.ui.view">
+			<field name="name">loan.policy.tree</field>
+			<field name="model">loan.policy</field>
+			<field name="arch" type="xml">
+				<tree string="Loan policies">
+					<field name="name" />
+					<field name="code" />
+					<field name="policy_type" />
+					<field name="policy_value" />
+					<field name="company_id" groups="base.group_multi_company"/>
+					<field name='state' invisible="True" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_policy_form" model="ir.ui.view">
+			<field name="name">policy.form</field>
+			<field name="model">loan.policy</field>
+			<field name="arch" type="xml">
+				<form string="Loan Policies" version="7.0">
+					<sheet>
+						<div class="oe_title">
+							<label for="name" class="oe_edit_only" />
+							<h1>
+								<field name="name" />
+							</h1>
+							<label for="code" class="oe_edit_only" />
+							<h2>
+								<field name="code" />
+							</h2>
+						</div>
+						<group>
+							<group>
+								<field name="policy_type" />
+								<field name="max_loan_type"
+									attrs="{'invisible':[('policy_type', '!=', 'maxamt')]}" />
+                                <field name="policy_value" />
+							</group>
+							<group>
+								<field name="company_id" groups="base.group_multi_company"/>
+								<!--<field name="policy_value" />-->
+								<field name='state' invisible="True" />
+							</group>
+						</group>
+						<group coslpan="4">
+							<separator string="Employee Categories" coslpan="4" />
+							<newline />
+							<field name="employee_categ_ids" nolabel="1" coslpan="4"
+								height="400" />
+							<newline />
+							<separator string="Employee's" coslpan="4" />
+							<newline />
+							<field name="employee_ids" nolabel="1" coslpan="4" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_loan_policy" model="ir.actions.act_window">
+			<field name="name">Loan Policies</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">loan.policy</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_loan_policy_filter" />
+			<field name="help">It will be used to decide different criteria of
+				loan for categories of employee's or for particular employee</field>
+		</record>
+
+		<menuitem action="action_loan_policy" id="loan_policies"
+			parent="policy_configure" name="Loan Policies" />
+
+		<!-- LOAN VIEW -->
+
+		<record id="view_loan_form" model="ir.ui.view">
+			<field name="name">loan.form</field>
+			<field name="model">employee.loan.details</field>
+			<field name="arch" type="xml">
+				<form string="Loan" version="7.0">
+					<header>
+						<!--<button string="Apply" type="workflow" name="applied" groups="base.group_user"
+							class="oe_highlight" states="draft" /> -->
+						<button string="Apply" type="object" name="action_applied" groups="base.group_user"
+                            class="oe_highlight" states="draft" />
+						<button name="compute_installments" class="oe_highlight" groups="account.group_account_invoice"
+							colspan="2" states="approved" string="Compute" type="object"
+							help="Compute Installments or change the state according to the disbursement type for loan request or repayment type in case of installments" />
+<!--						<button string="Approve" type="workflow" name="approved" -->
+<!--							class="oe_highlight" groups="hr.group_hr_user"-->
+<!--							states="applied" />-->
+						<button string="Approve" type="object" name="action_approved" 
+                            class="oe_highlight" groups="hr.group_hr_user"
+                            states="applied" />
+<!--						<button string="Reject" type="workflow" -->
+<!--							groups="hr.group_hr_user,account.group_account_invoice" name="reject"-->
+<!--							states="applied" />-->
+						<button string="Reject" type="object" 
+                            groups="hr.group_hr_user,account.group_account_invoice" name="action_rejected" 
+                            states="applied" />
+						<button string="Reset To Draft" type="object" name="action_reset"
+							states="cancel,rejected" />
+<!--						<button string="Disburse Loan" type="workflow" name="disburse"-->
+<!--							class="oe_highlight" states="approved" groups="account.group_account_invoice"/>-->
+						<button string="Disburse Loan" type="object" name="action_disburse"
+                            class="oe_highlight" states="approved" groups="account.group_account_invoice"/>
+<!--						<button string="Cancel" type="workflow" name="cancel"-->
+<!--							states="draft" />-->
+						<button string="Cancel" type="object" name="action_cancel"
+                            states="draft" />
+						<field name="state" widget="statusbar" statusbar_visible="draft,applied,approved"/>
+					</header>
+					<sheet>
+						<div class="oe_title">
+							<label for="employee_id" class="oe_edit_only" />
+							<h1>
+<!--								<field name="employee_id" on_change="onchange_employee_id(employee_id)" /-->
+								<field name="employee_id" on_change="onchange_employee_id(employee_id)" />
+							</h1>
+							<label for="name" class="oe_edit_only" />
+							<h2>
+								<field name="name" />
+							</h2>
+						</div>
+						<group>
+							<group>
+								<field name="date_applied" />
+								<field name="loan_type" widget="selection"
+									on_change="onchange_loan_type(loan_type, employee_id)" />
+								
+							</group>
+							<group>
+								<field name="date_approved"/>
+								<field name="date_disb" 
+									groups="account.group_account_invoice" />
+								<field name="department_id"/>
+								<field name="company_id" groups="base.group_multi_company"
+									widget="selection" />
+								<field name="user_id" />
+							</group>
+						</group>
+						<notebook>
+							<page string="General">
+								<group>
+                                    <field name="currency_id" groups="base.group_multi_currency"/>
+									<field name="principal_amount" widget="monetary" options="{'currency_field': 'currency_id'}" />
+									<field name="int_payable" />
+									<field name="interest_mode" />
+									<field name="duration" />
+									<field name="employee_gross" groups="hr.group_hr_user,hr.group_hr_manager"
+										required="False" invisible="1" />
+									<field name="int_rate" />
+									<field name="max_loan_amt" invisible="1"
+										attrs="{'invisible':[('state','in',['draft','cancel'])]}" />
+								</group>
+								<newline />
+								<field name="installment_lines" readonly="1" nolabel="1">
+									<tree editable="top" string="Installments">
+										<field name="install_no" />
+										<field name="date_from" />
+										<field name="date_to" />
+										<field name="principal_amt" widget="monetary" options="{'currency_field': 'currency_id'}" sum="Principal" />
+										<field name="interest_amt" widget="monetary" options="{'currency_field': 'currency_id'}" sum="Interest" />
+										<field name="total" widget="monetary" options="{'currency_field': 'currency_id'}" sum="Total" />
+										<field name="state" /><field name="currency_id" groups="base.group_multi_currency"/>
+										<field name="int_move_id" invisible="1" />
+										<button name="pay_installment"
+											confirm="You are trying to create EMI for this loan so make sure loan repayment for this loan type is not from payroll !"
+											states="approve" string="Pay" type="object" icon="terp-dolar"
+											help="Pay Installment" />
+										<button name="book_interest"
+											attrs="{'invisible':['|', ('interest_amt', '=', 0.0), ('int_move_id', '!=', False)]}"
+											type="object" 
+											icon="fa-check"
+											help="Book Interest" />
+											<!-- icon="terp-camera_test" -->
+
+
+										<button name="action_approve" states="unpaid" string="Approve Payment" icon="fa-level-down fa-rotate-90"
+											type="object"  help="Approve Payment" />
+											<!-- icon="gtk-ok" -->
+										<button name="action_reset" states="approve" string="Reset To Draft"
+											type="object" icon="terp-stock_effects-object-colorize" help="Reset To Draft" />
+									</tree>
+								</field>
+								<group>
+									<group>
+										<field name="final_total" colspan="2" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+										<field name="total_interest_amount" colspan="2" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+										<field name="total_amount_paid" colspan="2" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+										<field name="total_amount_due" colspan="2" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+									</group>
+									<newline />
+								</group>
+							</page>
+							<page string="Proofs">
+								<field name="loan_proof_ids" colspan="2" nolabel="1" />
+							</page>
+							<page string="Accounting"
+								groups="account.group_account_invoice">
+								<group>
+									<field name="journal_id" 
+										colspan="2" />
+									<field name="move_id" colspan="2" />
+                                    <field name="journal_id1" />
+                                    <field name="journal_id2" />
+									<field name="employee_loan_account" colspan="2" />
+								</group>
+							</page>
+							<page string="Policies" 
+								groups="hr.group_hr_user,account.group_account_invoice">
+								<separator string="Policies" colspan="4" />
+								<field name="loan_policy_ids" nolabel="1" colspan="4" />
+							</page>
+							<page string="Notes">
+								<field name="notes" colspan="2" nolabel="1" />
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers"
+							groups="base.group_user" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_loan_filter" model="ir.ui.view">
+			<field name="name">loan.list.select</field>
+			<field name="model">employee.loan.details</field>
+			<field name="arch" type="xml">
+				<search string="Search Loan">
+					<filter name="draft" icon="terp-document-new" string="Draft"
+						domain="[('state','=','draft')]" help="Loan that haven't yet been approved" />
+					<filter name="approved" icon="terp-camera_test" string="Approved"
+						domain="[('state','=','approved')]" />
+					<filter name="toapprove" icon="terp-gtk-media-pause" string=" To Approve"
+						domain="[('state','=','applied')]" />
+					<separator orientation="vertical" />
+					<filter name="disbursed" icon="terp-dolar" string="Disbursed"
+						domain="[('state','=','disburse')]" />
+					<filter name="rejected" icon="gtk-cancel" string="Rejected" domain="[('state','=','cancel')]" />
+					<filter name="paid" icon="terp-dolar" string="Paid" domain="[('state','=','done')]" />
+					<separator orientation="vertical" />
+					<field name="name" filter_domain="[('name','ilike',self)]" />
+					<field name="employee_id" />
+					<separator orientation="vertical" />
+					<field name="int_payable" />
+					<field name="company_id" widget="selection" groups="base.group_multi_company"/>
+					<newline />
+					<group expand="0" string="Search on Dates">
+						<field name="date_applied" />
+						<field name="date_approved" />
+					</group>
+					<newline />
+					<group expand="0" string="Group By...">
+						<filter name="employee" string="Employee" icon="terp-personal" domain="[]"
+							context="{'group_by':'employee_id'}" />
+						<filter name="interest_mode" string="Interest Mode" icon="terp-stock_effects-object-colorize"
+							domain="[]" context="{'group_by':'interest_mode'}" />
+						<filter name="interest_payable" string="Interest Payable" icon="terp-check" domain="[]"
+							context="{'group_by':'int_payable'}" />
+						<filter name="loan_type" string="Loan Type" icon="terp-check" domain="[]"
+							context="{'group_by':'loan_type'}" />
+						<separator orientation="vertical" />
+						<filter name="applied_date" string="Applied Date" icon="terp-go-month" domain="[]"
+							context="{'group_by':'date_applied'}" />
+						<filter name="approved_date" string="Approved Date" icon="terp-go-month" domain="[]"
+							context="{'group_by':'date_approved'}" />
+						<separator orientation="vertical" />
+						<filter name="state" string="State" icon="terp-stock_effects-object-colorize"
+							domain="[]" context="{'group_by':'state'}" />
+						<filter name="company_id" string="Company" icon="terp-go-home" domain="[]"
+							context="{'group_by':'company_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="view_loan_tree" model="ir.ui.view">
+			<field name="name">loan.policy.tree</field>
+			<field name="model">employee.loan.details</field>
+			<field name="arch" type="xml">
+				<tree string="Loans">
+					<field name="name" />
+					<field name="date_applied" />
+					<field name="loan_type" />
+					<field name="employee_id" />
+					<field name="int_payable" invisible="1" />
+					<field name="interest_mode" invisible="1" />
+					<field name="date_approved" />
+					<field name="principal_amount" />
+					<field name="int_rate" />
+					<field name="final_total" />
+					<field name="total_amount_paid" />
+					<field name="total_amount_due" />
+					<field name="state" />
+                    <field name="company_id" groups="base.group_multi_company"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_loan_graph" model="ir.ui.view">
+			<field name="name">loan.graph</field>
+			<field name="model">employee.loan.details</field>
+			<field name="arch" type="xml">
+				<graph string="Loans" type="bar">
+					<field name="employee_id" />
+					<field name="final_total" operator="+" />
+				</graph>
+			</field>
+		</record>
+
+		<record id="view_loan_calendar" model="ir.ui.view">
+			<field name="name">loan.calendar</field>
+			<field name="model">employee.loan.details</field>
+			<field name="arch" type="xml">
+				<calendar string="Loans" color="state" date_start="date_applied">
+					<field name="employee_id" />
+					<field name="principal_amount" />
+					<field name="int_rate" />
+					<field name="duration" />
+					<field name="final_total" />
+				</calendar>
+			</field>
+		</record>
+
+		<record id="action_loan" model="ir.actions.act_window">
+			<field name="name">Loan Requests</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">employee.loan.details</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar,graph</field>
+			<field name="search_view_id" ref="view_loan_filter" />
+			<field name="help">This is the view where the loan request will be
+				encoded</field>
+		</record>
+
+		<menuitem action="action_loan" sequence="1" id="loan_loans"
+			parent="loan_root" name="Loans" />
+
+		<menuitem action="action_loan_installment" groups="hr.group_hr_user,hr.group_hr_manager" id="loan_installment" sequence="100" 
+				  parent="loan_loans" name="Loan Installments " />
+		
+		<record id="action_loan_toapprove" model="ir.actions.act_window">
+			<field name="name">Loan Requests To Approve</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">employee.loan.details</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar,graph</field>
+			<field name="context">{'search_default_toapprove': 1}</field>
+			<field name="search_view_id" ref="view_loan_filter" />
+			<field name="help">This is the view where you can approve the loan
+				pending for approval</field>
+		</record>
+
+		<record id="action_loan_todisburse" model="ir.actions.act_window">
+			<field name="name">Loan Requests To Disburse</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">employee.loan.details</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar,graph</field>
+			<field name="context">{'search_default_approved': 1}</field>
+			<field name="search_view_id" ref="view_loan_filter" />
+			<field name="help">This is the view where you can Disburse the loan
+				that are approved</field>
+		</record>
+
+		<menuitem action="action_loan" id="loan_loan"
+			parent="loan_loans" name="Loan Requests" />
+			
+		<menuitem action="action_loan_toapprove" sequence="11"
+			groups="hr.group_hr_user,hr.group_hr_manager" id="loan_loan_toapprove"
+			parent="loan_loans" name="Loan Requests to Approve" />
+			
+		<menuitem action="action_loan_todisburse" id="loan_loan_todisburse"
+			sequence="10" parent="loan_root_account" name="Loans to Disburse" />
+		<!-- Employee -->
+
+		<record id="loan_employee_extd_form" model="ir.ui.view">
+			<field name="name">loan.employee.extd.form</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//field[@name='parent_id']" position="after">
+						<newline />
+						<field name="allow_multiple_loan" />
+						<field name="loan_defaulter" />
+					</xpath>
+<!--					<page string="HR Settings" position="before"-->
+					    <xpath expr="//notebook/page[3]" position="before">
+						<page string="Loan Details">
+							<group col="4" colspan="4">
+								<field name="loan_ids" height="360" nolabel="1" colspan="4">
+									<tree string="Loans">
+										<field name="name" />
+										<field name="date_applied" />
+										<field name="date_approved" />
+										<field name="loan_type" />
+										<field name="int_rate" string="Rate" />
+										<field name="principal_amount" />
+										<field name="final_total" />
+										<field name="total_amount_paid" />
+										<field name="total_amount_due" />
+										<field name="state" />
+									</tree>
+								</field>
+							</group>
+						</page>
+						<page string="Loan Policies">
+							<group col="4" colspan="4">
+								<separator string="Loan Policies" colspan="4" />
+								<field name="loan_policy" nolabel="1" colspan="4" />
+							</group>
+						</page>
+						</xpath>
+<!--					</page-->
+				</data>
+			</field>
+		</record>
+
+		<!-- Employee Categories -->
+
+		<record id="loan_employee_categ_form" model="ir.ui.view">
+			<field name="name">loan.employee.loan.form</field>
+			<field name="model">hr.employee.category</field>
+			<field name="inherit_id" ref="hr.view_employee_category_form" />
+			<field name="arch" type="xml">
+				<data>
+					<!--<separator string="Employees" colspan="4" position="replace"/> -->
+					<!--<field name="employee_ids" colspan="4" nolabel="1" position="replace"/> -->
+					<xpath expr="//field[@name='name']" position="replace">
+                        <group string="Tags" cols="4">
+                            <field name="name" />
+						    <field name="allow_multiple_loan" />
+                        </group>
+                        <group>
+						<!-- <separator string="Employees" colspan="4"/> <field name="employee_ids" 
+							colspan="4" nolabel="1"/> -->
+						<separator string="Loan Policies" colspan="4" />
+						<field name="loan_policy" nolabel="1" colspan="4" />
+                        </group>
+					</xpath>
+				</data>
+			</field>
+		</record>
+
+		<!-- Adding fields to the Salary Rules -->
+
+		<!--<record id="hr_salary_rule_form_inherit_loan" model="ir.ui.view">
+			<field name="name">hr.salary.rule.form.inherit.loan</field>
+			<field name="model">hr.salary.rule</field>
+			<field name="inherit_id" ref="hr_payroll.hr_salary_rule_form" />
+			<field name="arch" type="xml">
+				<field name="company_id" widget="selection" groups="base.group_multi_company"
+					position="after">
+					<field name="loan_allowance" />
+					<field name="loan_deduction" />
+				</field>
+			</field>
+		</record>-->
+		<!-- 
+		<record model="ir.ui.view" id="view_account_prepayment_loan_form">
+			<field name="name">loan.prepayment.form</field>
+			<field name="model">loan.prepayment</field>
+			<field name="arch" type="xml">
+				<form string="Prepayment" version="7.0">
+					<header attrs="{'invisible':[('method_prepayment','!=','add')]}">
+							<button name="validate1" class="oe_highlight" states="draft"
+								string="Confirm" type="object" />
+							<button name="set_to_draft_app" states="cancel" string="Set to Draft"
+								type="object" />
+							<button name="approve" states="open" class="oe_highlight"
+								string="Approve" type="object" />
+							<button name="set_to_draft" states="reject" string="Set to Draft"
+								type="object" />
+							<button name="set_to_close1" states="open" string="Reject"
+								type="object" />
+							<button name="set_to_cancel" states="draft" string="Cancel"
+								type="object" />
+							<field name="state" readonly="1" widget="statusbar" colspan="4" />
+						</header>
+						<header attrs="{'invisible':[('method_prepayment','!=','new')]}">
+							<button name="set_to_draft" states="open1,approve" string="Set to Draft"
+								type="object" />
+							<button name="set_to_cancel" states="draft" string="Cancel"
+								type="object" />
+							<button name="set_to_close" states="approve" class="oe_highlight"
+								string="Set to Close" type="object" />
+							<button name="validate" states="draft" class="oe_highlight"
+								string="Confirm" type="object" />
+							<button name="approve" states="open1" class="oe_highlight"
+								string="Approve" type="object" />
+							<field name="state" readonly="1" widget="statusbar" colspan="4" />
+						</header>
+					<sheet>
+
+						
+						<group col="4" string="Loan Repayments">
+							<field name="method_prepayment" />
+							<field name="name" string="Name" />
+							<field name="emp_id" />
+							<field name="loan_type" />
+							<field name="code"
+								attrs="{'invisible':[('method_prepayment','!=','new')]}" />
+							<field name="purchase_value"
+								attrs="{'invisible':[('method_prepayment','!=','new')]}" />
+							<field name="original_amount"
+								attrs="{'invisible':[('method_prepayment','!=','new')]}" />
+							<field name="value_residual"
+								attrs="{'invisible':[('method_prepayment','!=','new')]}" />
+							<field name="total_am"
+								attrs="{'invisible':[('method_prepayment','!=','new')]}" />
+							<field name="purchase_date"
+								attrs="{'invisible':[('method_prepayment','!=','new')]}" />
+						</group>
+						<group col="4" string="General Information">
+							<field name="company_id" widget="selection" groups="base.group_multi_company"
+								on_change="onchange_company_id(company_id)" />
+							<field name="currency_id"
+								attrs="{'invisible':[('method_prepayment','!=','new')]}" />
+							<field name="user_id" />
+							<field name="account_analytic_id" groups="analytic.group_analytic_accounting" />
+						</group>
+						<group col="4" string="Book Transfer">
+							<field name="book_gl"
+								attrs="{'invisible':[('method_prepayment','!=','new')]}" />
+							<field name="journal_id" attrs="{'invisible':[('book_gl','=',False)]}" />
+							<field name="gl_account_id"
+								attrs="{'invisible':[('book_gl','=',False)], 'required':[('book_gl','=',True)]}" />
+							<field name="move_id1" attrs="{'invisible':[('book_gl','=',False)]}" />
+						</group>
+
+						<notebook colspan="4">
+							<page string="General"
+								attrs="{'invisible':[('method_prepayment','!=','new')]}">
+								<group col="4" string="Repayments">
+									<field name="int_payable" />
+									<field name="int_rate" />
+									<field name="interest_mode" />
+									<field name="duration" />
+								</group>
+								<group col="4" string="Employee Account">
+									<field name="employee_loan_account" />
+									<field name="journal_id1" />
+								</group>
+							</page>
+							<page string="Repayment Board"
+								attrs="{'invisible':[('method_prepayment','!=','new')]}">
+								<button type="object" states="draft,open1,open" name="create_installments"
+									string="Compute Board" class="oe_highlight" colspan="2" />
+								<field name="depreciation_line_ids" colspan="4" nolabel="1"
+									mode="tree,graph">
+									<tree editable="top" string="Repayment Schdules">
+										<field name="install_no" />
+										<field name="date_from" />
+										<field name="date_to" />
+										<field name="amount_already_paid" />
+										<field name="principal_amt" sum="Principal" />
+										<field name="interest_amt" sum="Interest" />
+										<field name="total" sum="Total" />
+										<field name="state" />
+										<field name="int_move_id" invisible="1" />
+										<button name="pay_installment1"
+											confirm="You are trying to create EMI for this loan so make sure loan repayment for this loan type is not from payroll !"
+											states="approve" string="Pay" type="object" icon="terp-dolar"
+											help="Pay Installment" />
+										<button name="book_interest1"
+											attrs="{'invisible':['|', ('interest_amt', '=', 0.0), ('int_move_id', '!=', False)]}"
+											string="Book Interest" type="object" icon="terp-camera_test"
+											help="Book Interest" />
+										<button name="action_approve" states="unpaid" string="Approve Payment"
+											type="object" icon="gtk-ok" help="Approve Payment" />
+										<button name="action_reset" states="approve" string="Reset To Draft"
+											type="object" icon="terp-stock_effects-object-colorize" help="Reset To Draft" />
+									</tree>
+								</field>
+							</page>
+							<page string="Notes">
+								<field name="note" nolabel="1" />
+							</page>
+						</notebook>
+
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+
+				</form>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_account_prepayment_loan_tree">
+			<field name="name">loan.prepayment.form</field>
+			<field name="model">loan.prepayment</field>
+			<field name="arch" type="xml">
+				<tree string="Loan Prepayments">
+					<field name="method_prepayment" />
+					<field name="name" string="Name" />
+					<field name="emp_id" />
+					<field name="loan_type" />
+					<field name="purchase_value" />
+					<field name="original_amount" />
+					<field name="value_residual" />
+					<field name="total_am" />
+					<field name="purchase_date" />
+					<field name="user_id" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_account_prepayment_loan_search">
+			<field name="name">loan.prepayment.search</field>
+			<field name="model">loan.prepayment</field>
+			<field name="arch" type="xml">
+				<search string="Search Loan Prepayments">
+					<filter icon="terp-check" domain="[('state','=','draft')]"
+						string="To Confirm" />
+					<filter icon="terp-camera_test" domain="[('state','=','open1')]"
+						string="To Approve" name="approve" />
+					<filter icon="terp-camera_test" domain="[('state','=','approve')]"
+						string="Approved" name="validated" />
+					<separator orientation="vertical" />
+					<field name="name" />
+					<field name="emp_id" />
+					<field name="loan_type" />
+					<field name="state" />
+					<field name="user_id">
+						<filter icon="terp-personal" name="my_repairs" domain="[('user_id','=', uid)]"
+							help="My Opening Balances" />
+					</field>
+					<field name="company_id" widget="selection" groups="base.group_multi_company" />
+					<group expand="0" string="Group By...">
+						<filter name="group_date_from" string="Date" icon="terp-go-month"
+							domain="[]" context="{'group_by':'purchase_date'}" />
+						<separator orientation="vertical" />
+						<filter name="group_employee" string="User" icon="terp-personal"
+							domain="[]" context="{'group_by':'user_id'}" />
+						<separator orientation="vertical" />
+						<filter string="State" icon="terp-stock_effects-object-colorize"
+							domain="[]" context="{'group_by':'state'}" />
+						<filter string="Loan Type" icon="terp-stock_effects-object-colorize"
+							domain="[]" context="{'group_by':'loan_type'}" />
+						<filter string="Employee" icon="terp-go-home" domain="[]"
+							context="{'group_by':'emp_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+
+	    <record model="ir.actions.act_window" id="action_account_loan_ob_form">
+			<field name="name">Opening Balances</field>
+			<field name="res_model">loan.prepayment</field>
+			<field name="view_id" ref="view_account_prepayment_loan_tree" />
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record> 
+
+		<menuitem parent="loan_root_account" sequence="9"
+			id="menu_account_loan_ob_form1" action="action_account_loan_ob_form" />
+			-->
+	</data>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report id="report_loan_analysis" 
+                model="employee.loan.details" 
+                name="loan.details"
+                rml="ng_loan_payroll/report/loan_details.rml" 
+                string="Print Loan"
+                auto="True"/>
+    </data>
+</odoo>

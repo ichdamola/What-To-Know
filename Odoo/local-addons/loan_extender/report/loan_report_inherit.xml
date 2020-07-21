@@ -1,0 +1,8 @@
+-- <?xml version="1.0" encoding="utf-8"?>
+-- <odoo>
+-- 	<report id="report_loan_inherit"
+-- 	name="hr_employee_loan.loan_report_from_wiz"
+-- 	model="employee.loan.details"
+-- 	string="Book"
+-- 	report_type="qweb-pdf" />
+-- </odoo>

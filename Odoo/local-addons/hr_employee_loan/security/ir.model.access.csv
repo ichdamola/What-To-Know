@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_employee_loan_details_employee,employee_loan_details1,model_employee_loan_details,base.group_user,1,1,1,1
+access_loan_installment_details_emp,loan.installment.details.emp,model_loan_installment_details,base.group_user,1,0,0,0
+access_loan_installment_details_accountant,loan.installment.details.accountant,model_loan_installment_details,account.group_account_invoice,1,1,1,1
+access_loan_installment_details_loantype_emp,loan.installment.emp.details.loantype,model_loan_type,base.group_user,1,0,0,0
+access_loan_installment_details_loantype_officer,loan.installment.details.loantype.officer,model_loan_type,hr.group_hr_user,1,1,1,1
+access_loan_installment_details_loantype_accountant,loan.installment.details.loantype.accountant,model_loan_type,account.group_account_invoice,1,0,0,0
+access_loan_policy_hr_officer,loan_policy,model_loan_policy,hr.group_hr_user,1,1,1,1
+access_loan_policy_emp,hr.loan.policy,model_loan_policy,base.group_user,1,0,0,0
+access_loan_policy_accountant,hr.loan.policy,model_loan_policy,account.group_account_user,1,0,0,0
+access_loan_proof_emp,loan.proof.emp,model_loan_proof,base.group_user,1,0,0,0
+access_loan_proof_officer,loan.proof.hr.officer,model_loan_proof,hr.group_hr_user,1,1,1,1

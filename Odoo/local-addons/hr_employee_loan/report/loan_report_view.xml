@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="loan_report_from_wiz">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="web.external_layout">
+						<div class="page">
+							<span style="text-align:center;"><h3><b>LOAN DETAILS</b></h3></span>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Date Approved</th>
+										<th>Principal</th>
+										<th>Rate</th>
+										<th>Duration</th>
+										<th>Interest Mode</th>
+										<th>Total</th>
+										<th>Received</th>
+										<th>Due</th>
+									</tr>
+								</thead>
+								<tbody>
+									<t t-foreach="get_loan(data['form'])" t-as="loan">
+										<tr>
+											<td><span t-esc="loan.employee_id.name"/></td>
+											<td><span t-esc="loan.date_approved"/></td>
+											<td><span t-esc="loan.principal_amount"/></td>
+											<td><span t-esc="loan.int_rate"/></td>
+											<td><span t-esc="loan.duration"/></td>
+											<td><span t-esc="loan.interest_mode  == 'flat' and 'Flat' or 'Reducing'"/></td>
+											<td><span t-esc="loan.final_total"/></td>
+											<td><span t-esc="loan.total_amount_paid"/></td>
+<!--											<td><span t-esc="total.amount_due"/></td-->
+											<td><span t-esc="loan.total_amount_due"/></td>
+										</tr>
+									</t>
+								</tbody>
+								<tr>
+									<td colspan="6"></td>
+									<td><b><span t-esc="formatLang(get_total())"/></b></td>
+									<td><b><span t-esc="formatLang(get_total_received())"/></b></td>
+									<td><b><span t-esc="formatLang(get_total_due())"/></b></td>
+								</tr>
+							</table>
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</openerp>

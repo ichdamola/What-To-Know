@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+<document filename="Loan Request.pdf">
+  <template title="Loan Request" author="OpenERP S.A.(sales@openerp.com)" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="15.0" y1="42.0" width="539" height="758"/>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table2">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="2,0" stop="2,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#e6e6e6" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="3,0" stop="3,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,-1" stop="3,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table3">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="0,0" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="1,0" stop="1,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="2,0" stop="2,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#e6e6e6" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEAFTER" colorName="#e6e6e6" start="3,0" stop="3,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#e6e6e6" start="3,0" stop="3,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,-1" stop="3,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table4">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="4,-1" stop="4,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="5,-1" stop="5,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table5">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="4,-1" stop="4,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="5,-1" stop="5,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="6,-1" stop="6,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="7,-1" stop="7,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="8,-1" stop="8,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="9,-1" stop="9,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table6">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEABOVE" colorName="#ffffff" start="0,0" stop="0,0"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="0,1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#ffffff" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBEFORE" colorName="#ffffff" start="0,2" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#ffffff" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,2" stop="1,2"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,2" stop="2,2"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table7">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Table Contents" fontName="Helvetica"/>
+    <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="terp_header" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_8" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_9" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_tblheader_General" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_General_Centre" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_Centre_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_tblheader_Details" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Footer" fontName="Helvetica"/>
+    <paraStyle name="Horizontal Line" fontName="Helvetica" fontSize="6.0" leading="8" spaceBefore="0.0" spaceAfter="14.0"/>
+    <paraStyle name="Heading 9" fontName="Helvetica-Bold" fontSize="75%" leading="NaN" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_General_Right" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_Details_Centre" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_tblheader_Details_Right" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_Right_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_header_Right" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_header_Centre" fontName="Helvetica-Bold" fontSize="15.0" leading="19" alignment="CENTER" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_address" fontName="Helvetica" fontSize="10.0" leading="13" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Centre_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Right_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_1" fontName="Helvetica" fontSize="2.0" leading="3" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Right_9_Bold" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Italic" rightIndent="0.0" leftIndent="20.0" fontName="Helvetica-Oblique" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="Preformatted Text" fontName="Helvetica" fontSize="10.0" leading="13" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Centre_9_Bold" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
+    <images/>
+  </stylesheet>
+  <story>
+  <pto>
+  <para style="terp_default_8">[[repeatIn(objects,'loan')]]</para>
+  <pto_header>
+     <blockTable colWidths="30.0,60.0,60.0,60.0,60.0,60.0,80.0,70.0,50.0" repeatRows="1" style="Table5">
+      <tr>
+        <td>
+        <para style="terp_default_8"> [[ loan.state == 'draft' and removeParentNode('blockTable') ]] </para>
+          <para style="terp_tblheader_Details">N°</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Centre">Opening Bal.</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Centre">EMI</para>
+        </td>
+         <td>
+          <para style="terp_tblheader_Details_Right">Principal</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Centre">Interest</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Centre">From</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Right">To</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Right">Closing Bal.</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Centre">State</para>
+        </td>
+      </tr>
+    </blockTable>
+  </pto_header>
+    <para style="terp_default_9">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="265.0,51.0,225.0" style="Table1">
+      <tr>
+        <td>
+          <para style="terp_default_Bold_9">Name : [[ loan.employee_id.name ]]</para>
+          <para style="terp_default_9">
+            <font color="white"> </font>
+          </para>
+          <para style="terp_default_9">[[ loan.employee_id.parent_id or removeParentNode('para') ]] Manager :</para>
+          <para style="terp_default_9">[[ loan.employee_id.parent_id or removeParentNode('para') ]] [[ loan.employee_id.parent_id.name ]]</para>
+       	  <para style="terp_default_Bold_9">Principal Amount : [[  loan.principal_amount  ]]</para>
+          <para style="terp_default_Bold_9">Interest Rate    : [[ loan.int_rate ]]</para>
+          <para style="terp_default_Bold_9">Duration         : [[ loan.duration ]]</para>
+          <para style="terp_default_Bold_9">Interest Mode    : [[ loan.interest_mode == 'flat' and 'Flat' or 'Reducing' ]]</para>
+          <para style="terp_default_Bold_9">Loan Type    : [[ loan.loan_type.name ]]</para>
+          <para style="terp_default_Bold_9">Payment Type    : [[ loan.loan_type.payment_method == 'salary' and 'Deduction from salary' or 'Cash/Cheque' ]]</para>
+          <para style="terp_default_Bold_9">Disbursement Type    : [[ loan.loan_type.disburse_method == 'payroll' and 'From payroll' or 'From loan' ]]</para>
+        </td>
+        <td>
+          <para style="terp_default_8">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+		  <para style="terp_default_Bold_9">Date Applied  : [[ loan.date_applied ]]</para>
+          <para style="terp_default_Bold_9">Date Approved : [[ loan.date_approved ]]</para>
+          <para style="terp_default_Bold_9">Date Repayment: [[ loan.date_repayment ]]</para>	         
+          <para style="terp_default_9">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="terp_default_8">
+      <font color="white"> </font>
+    </para>
+    <para style="terp_header">[[ loan.state=='draft' and removeParentNode('para') ]] Loan N° [[ loan.name ]]</para>
+    <para style="terp_default_8">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="132.0,134.0,135.0,135.0" style="Table2">
+      <tr>
+        <td>
+          <para style="terp_tblheader_General_Centre">Interest Amount</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_General_Centre">Total</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_General_Centre">Amount Received</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_General_Centre">Amount Due</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="132.0,134.0,135.0,135.0" style="Table3">
+      <tr>
+        <td>
+          <para style="terp_default_Centre_8">[[ formatLang(loan.total_interest_amount) ]]</para>
+        </td>
+        <td>
+          <para style="terp_default_Centre_8">[[ formatLang(loan.final_total) ]]</para>
+        </td>
+        <td>
+          <para style="terp_default_Centre_8">[[ formatLang(loan.total_amount_paid ) ]]</para>
+        </td>
+        <td>
+          <para style="terp_default_Centre_8">[[ formatLang(loan.total_amount_due) ]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="terp_default_8">
+      <font color="white"> </font>
+    </para>
+    <para style="terp_header">Installments [[ loan.state == 'draft' and removeParentNode('para') ]]</para>
+    <blockTable colWidths="30.0,60.0,60.0,60.0,60.0,60.0,80.0,70.0,50.0" repeatRows="1" style="Table5">
+      <tr>
+        <td>
+        <para style="terp_default_8"> [[ loan.state == 'draft' and removeParentNode('blockTable') ]] </para>
+          <para style="terp_tblheader_Details">N°</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Centre">Opening Bal.</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Centre">EMI</para>
+        </td>
+         <td>
+          <para style="terp_tblheader_Details_Right">Principal</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Centre">Interest</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Centre">From</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Right">To</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Right">Closing Bal.</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Centre">State</para>
+        </td>
+      </tr>
+    </blockTable>
+    <section>
+      <para style="terp_default_1">[[ repeatIn(get_lines(loan.installment_lines),'installment_lines') ]]</para>
+      <blockTable colWidths="30.0,60.0,60.0,60.0,60.0,60.0,80.0,70.0,50.0" style="Table5">
+        <tr>
+         <td>
+            <para style="terp_default_9">[[ installment_lines['no'] ]]</para>
+          </td>
+           <td>
+            <para style="terp_default_9">[[ formatLang(installment_lines['opening_bal']) ]]</para>
+          </td>
+           <td>
+            <para style="terp_default_9">[[ formatLang(installment_lines['emi']) ]]</para>
+          </td>
+          <td>
+            <para style="terp_default_9">[[ formatLang(installment_lines['principal']) ]]</para>
+          </td>
+           <td>
+            <para style="terp_default_Centre_9">[[ formatLang(installment_lines['interest']) ]]</para>
+          </td>
+          <td>
+            <para style="terp_default_Centre_9">[[ formatLang(installment_lines['date_from'],date=True) ]]</para>
+          </td>
+          <td>
+            <para style="terp_default_Right_9">[[ formatLang(installment_lines['date_to'],date=True) ]]</para>
+          </td>
+          <td>
+            <para style="terp_default_Right_9">[[ formatLang(installment_lines['closing_bal'] ) ]]</para>
+          </td>
+          <td>
+            <para style="terp_default_Centre_9">[[ installment_lines['state'] == 'paid' and 'Paid' or 'Unpaid' ]]</para>
+          </td>
+        </tr>
+      </blockTable>
+    </section>
+     <para style="terp_header">Policies</para>
+    <blockTable colWidths="181.0,70.0,80.0,70.0" repeatRows="1" style="Table5">
+      <tr>
+        <td>
+          <para style="terp_tblheader_Details">Name</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Centre">Code</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Right">Type</para>
+        </td>
+        <td>
+          <para style="terp_tblheader_Details_Right">Value</para>
+        </td>
+      </tr>
+    </blockTable>
+    <section>
+      <para style="terp_default_1">[[ repeatIn(loan.loan_policy_ids,'policies') ]]</para>
+      <blockTable colWidths="180.0,70.0,80.0,70.0" style="Table5">
+        <tr>
+          <td>
+            <para style="terp_default_9">[[ policies.name ]]</para>
+          </td>
+          <td>
+            <para style="terp_default_Centre_9">[[ policies.code ]]</para>
+          </td>
+          <td>
+            <para style="terp_default_Right_9">[[ policies.policy_type == 'maxamt' and 'Max Loan Amount' or policies.max_loan_type == 'basic' and 'ON BASIC' or policies.max_loan_type == 'gross' and 'ON GROSS' or  policies.max_loan_type == 'fixed' and 'AS FIXED AMOUNT' or policies.policy_type == 'loan_gap' and 'Gap between two loans' or policies.policy_type == 'eligible_duration' and 'Eligible Duration' ]]</para>
+          </td>
+          <td>
+            <para style="terp_default_Right_9">[[ formatLang(policies.policy_value) ]] </para>
+          </td>
+        </tr>
+      </blockTable>
+    </section>
+  </pto>
+  </story>
+</document>
