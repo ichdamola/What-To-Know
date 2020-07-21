@@ -18,5 +18,7 @@ SELECT * FROM table_name WHERE NOT Country="Nexico" AND Country="Nigeria";
 SELECT * FROM table_name ORDER BY Country;
 SELECT * FROM table_name ORDER BY Country ASC, Customer DESC;
 -- Use 'INSERT INTO'
+INSERT INTO table_name
+VALUES (value1, value2, value3, ...);
 INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
 VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
