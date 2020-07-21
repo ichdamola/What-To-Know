@@ -14,3 +14,5 @@ SELECT * FROM table_name WHERE Country="Mexico";
 -- Using AND, OR, NOT, 
 SELECT * FROM table_name WHERE (Country="Nexico" AND Country="Nigeria") OR Country="Eygpt";
 SELECT * FROM table_name WHERE NOT Country="Nexico" AND Country="Nigeria";
+-- Use ORDER BY keyword
+SELECT * FROM table_name ORDER BY Country;
