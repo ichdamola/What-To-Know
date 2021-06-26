@@ -19,7 +19,7 @@ def repeatedString(s, n):
     total = 0
     
     for i in s:
-        if s == 'a':
+        if i == 'a':
             total += 1
     
     total = n//len(s) * total
