@@ -12,7 +12,8 @@ def stringExpander(stringValue):
     i = 0
     j = 0
 
-    while ()
+    if 
+
 
 
 print (stringExpander('3[a]'))
