@@ -33,11 +33,22 @@ void printArray(int arr[], int size)
 // Driver code
 int main()
 {
-	int arr[] = {64, 34, 25, 12, 22, 11, 90};
-	int n = sizeof(arr)/sizeof(arr[0]);
-	bubbleSort(arr, n);
-	cout<<"Sorted array: \n";
-	printArray(arr, n);
+
+    srand(time(0));
+    const unsigned int sizeOfArray = 1000;
+    int arrayIntegers[sizeOfArray];
+
+    for (int i = 0; i < sizeOfArray; i++){
+        arrayIntegers[i] = rand() % 1000;
+    }
+
+    cout<<"\nNon-sorted array: \n";
+    printArray(arrayIntegers, sizeOfArray);
+    cout<<"\n";
+
+	bubbleSort(arrayIntegers, sizeOfArray);
+	cout<<"Sorted array: \n\n";
+	printArray(arrayIntegers, sizeOfArray);
 	return 0;
 }
 
