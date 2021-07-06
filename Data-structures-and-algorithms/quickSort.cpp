@@ -1,5 +1,8 @@
 /* C implementation QuickSort */
 #include<stdio.h>
+#include <bits/stdc++.h>
+#include<ctime>
+using namespace std;
 
 // A utility function to swap two elements
 void swap(int* a, int* b)
@@ -64,10 +67,20 @@ void printArray(int arr[], int size)
 // Driver program to test above functions
 int main()
 {
-	int arr[] = {10, 7, 8, 9, 1, 5};
-	int n = sizeof(arr)/sizeof(arr[0]);
-	quickSort(arr, 0, n-1);
-	printf("Sorted array: \n");
-	printArray(arr, n);
+    srand(time(0));
+    const unsigned int sizeOfArray = 1000;
+    int arrayIntegers[sizeOfArray];
+
+    for (int i = 0; i < sizeOfArray; i++){
+        arrayIntegers[i] = rand() % 1000;
+    }
+
+    cout<<"\nNon-sorted array: \n\n";
+    printArray(arrayIntegers, sizeOfArray);
+	cout<<"\n\n";
+
+	quickSort(arrayIntegers, 0, sizeOfArray-1);
+	printf("Sorted array: \n\n");
+	printArray(arrayIntegers, sizeOfArray);
 	return 0;
 }
