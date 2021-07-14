@@ -27,8 +27,7 @@ def word_count_engine(document):
 
     return res
 
-# print (word_count_engine("Practice makes perfect. you'll only get Perfect by practice. just practice!"))
-
+# TC: O(n*m) | SC: O(n^2)
 if __name__=="__main__":
     assert word_count_engine("Practice makes perfect. you'll only get Perfect by practice. just practice!")==[["practice", "3"], ["perfect", "2"], ["makes", "1"], ["youll", "1"], ["only", "1"],["get", "1"], ["by", "1"], ["just", "1"]], "Failled test 1"
     print("Passed all test cases!")
