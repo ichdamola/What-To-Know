@@ -18,9 +18,12 @@ def subsequent_array_finder(arr1: list, arr2: list) -> bool:
         if arr1[i] == arr2[arr2_pointer]:
             arr2_pointer += 1
     
-    arr2_is_fully_traversed = arr2_pointer == len(arr2)
+    length_of_arr2 = arr2_pointer == len(arr2)
 
-    return arr2_is_fully_traversed
+    if length_of_arr2:
+        return True
+
+    return False
 
 
 if __name__=="__main__":
