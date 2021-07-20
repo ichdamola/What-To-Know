@@ -17,3 +17,5 @@ def most_frequent(arr):
 
 if __name__ == "__main__":
     assert most_frequent([1,1,1,1,2,2,3,1,4,5]) == 1, "Test case failed!"
+    assert most_frequent([1,3,3,3,3,3,1,2,2,3,1,4,5]) == 3, "Test case failed!"
+    "Failed all test cases!"
