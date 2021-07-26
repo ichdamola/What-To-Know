@@ -1,29 +1,19 @@
     
 def word_count_engine(document):
     wordCountPair = {}
-
-    # Tokenizing the words
-    document = document.lower().split(' ')
-
+    document = document.lower()
+    words = ''
     # removing non-alphabetic characters
-    for word in document:
-        charList = []
-        for ch in word:
-            if (ch>='a' and ch<='z'):
-                charList.append(ch)
+    for ch in document:
+        if (ch>='a' and ch<='z' or ch == ' '):
+            words += ch
+    words = words.split(' ')
 
-        # convert charList to word
-        cleanWord = "".join(charList)
-        charList = []
-
-        if len(cleanWord) < 1:
-            continue
-
-        # creating the wordCountPair
-        if cleanWord in wordCountPair:
-            wordCountPair[cleanWord] += 1
+    for word in words:
+        if word in wordCountPair:
+            wordCountPair[word] += 1
         else:
-            wordCountPair[cleanWord] = 1
+            wordCountPair[word] = 1
     
     # sorting the words based on their number of occurences in desending order
     sortedWordCountPair = sorted(wordCountPair.items(), key=lambda x:x[1], reverse=True)
