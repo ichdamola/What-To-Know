@@ -5,25 +5,21 @@ You must write an algorithm that runs in O(n) time.
 
 """
 def longestConsecutive(nums) -> int:
-    nums.sort()
 
     if len(nums) == 0:
         return 0
+    
+    numSet = set(nums)
 
-    max_element = nums[0]
-    for i in range(1,len(nums)):
-        if nums[i] < max_element:
-            max_element = nums[i]
-                
-    consecutive_nums = []
-    consecutive_nums.append(max_element)
-        
-    for i in range(len(nums)):
-        if nums[i] == max_element + 1:
-            max_element = nums[i]
-            consecutive_nums.append(nums[i])
-                
-    return max_element
+    result = 0
+    for num in nums:
+        counter = 1
+        if num-1 not in numSet:
+            while num+1 in numSet:
+                num += 1
+                counter += 1
+            result = max(result, counter)
+    return result
 
 
 if __name__ == "__main__":
