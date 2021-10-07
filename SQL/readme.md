@@ -1,4 +1,4 @@
-##How do I find duplicates across multiple columns?
+## How do I find duplicates across multiple columns?
 
 ```
 select h.id, t.* 
