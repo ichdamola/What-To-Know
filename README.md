@@ -1,2 +1,2 @@
 # What-To-Know
-Crash exercises on various programming subjects.
+Crash exercises on various software technologies.
